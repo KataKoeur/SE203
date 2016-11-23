@@ -26,17 +26,17 @@ $(EXE): main.o t1.o t2.o stubs.o
 main.o: main.c
 	$(CC) $(CFLAGS) -c -o $@ main.c
 
-t1.o: t1.c t1.o
+t1.o: t1.c t1.h
 	$(CC) $(CFLAGS) -c -o $@ t1.c
 
-t2.o: t2.c t2.o
+t2.o: t2.c t2.h
 	$(CC) $(CFLAGS) -c -o $@ t2.c
 
 stubs.o: libs/stubs.c
 	$(CC) -g -O2 -mthumb -c -o $@ $^
 
 clean:
-	@rm -f *.o
+	@rm -f *.o *.d hello
 
 
 # Dépendances
