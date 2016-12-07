@@ -33,10 +33,14 @@ loop:
 	add	r1, #1		@ i=i+1;
 	b	loop		@ retour au début de la boucle
 sortie:
+
+variable:
+	.word	a
 @--------------------------------------------------------
 
 @ Code généré par la commande: arm-none-eabi-gcc -Os -S exo1.c
 @--------------------------------------------------------
 	.size	f, .-f
+	.comm	a,4,4
 	.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160919 (release) [ARM/embedded-5-branch revision 240496]"
 @--------------------------------------------------------
