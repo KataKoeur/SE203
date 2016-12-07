@@ -1,0 +1,34 @@
+# Exercices de compilation
+
+## Exercice 1
+
+Traduire en assembleur ARM le code suivant :
+uint32_t a; // global variable
+...
+for (uint8_t i=0; i<=a; i++)
+{
+  g();
+}
+
+Q: Même question si i est un unsigned int. Conclusion ?
+R:
+
+## Exercice 2
+
+Traduire en assembleur ARM le code suivant :
+uint32_t *a; // global variable
+uint32_t *b; // global variable
+uint32_t *c; // global variable
+...
+*a += *c;
+*b += *c;
+
+Comparez avec ce que produit GCC, ainsi :
+void f() {
+*a += *c ;
+*b += *c ;
+}
+Puis : arm-none-eabi-gcc -O2 -S t.c -o -
+
+Q: Pourquoi GCC charge-t-il deux fois le contenu de *c au lieu d'une seule ?
+R: 
