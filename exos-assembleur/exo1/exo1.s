@@ -24,7 +24,6 @@
 @--------------------------------------------------------
 f:
 	ldr	r0, =a		@ on charge a dans r0
-	ldr	r1, =i		@ on charge i dans r1
 	mov	r1, #0		@ i=0;
 loop:
 	cmp	r0, r1		@ a-i
