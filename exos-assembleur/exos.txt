@@ -11,7 +11,11 @@ for (uint8_t i=0; i<=a; i++)
 }
 
 Q: Même question si i est un unsigned int. Conclusion ?
-R:
+R: De mon point de vue, il n'y a aucune différence entre les 2 programmes car le variable i est initialisé à 0 et incrémenté jusqu'a à. Néanmoins, le compilateur ajoute ligne ci-dessous en plus lorsque i est signé:
+
+mov	r4, r4, asl #24
+bl	g
+mov	r4, r4, asr #24
 
 ## Exercice 2
 
@@ -31,4 +35,4 @@ void f() {
 Puis : arm-none-eabi-gcc -O2 -S t.c -o -
 
 Q: Pourquoi GCC charge-t-il deux fois le contenu de *c au lieu d'une seule ?
-R: 
+R:
