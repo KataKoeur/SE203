@@ -23,13 +23,14 @@
 @ Code écrit par mes soins
 @--------------------------------------------------------
 f:
-	ldr	r0, =a		@ on charge a dans r0
-	mov	r1, #0		@ i=0;
+	ldr	r0, =a		@ r0 = &a
+	ldr	r0, [r0]	@ r0 = a
+	mov	r1, #0		@ r1 = 0, soit i = 0
 loop:
-	cmp	r0, r1		@ a-i
-	bne	sortie		@ si a-i == 0 alors sortir de la boucle
+	cmp	r0, r1		@ (r0 - 1), soit (a - i)
+	bne	sortie		@ si (a-i == 0) alors sortir de la boucle
 	bl	g		@ g();
-	add	r1, #1		@ i=i+1;
+	add	r1, #1		@ r1 = r1 +1, soit i=i+1
 	b	loop		@ retour au début de la boucle
 sortie:
 

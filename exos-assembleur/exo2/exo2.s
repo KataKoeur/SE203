@@ -36,10 +36,10 @@ f:
 	ldr	r2, [r2]	@ r2 = *c
 
 	add	r4, r4, r2	@ r4 = *a + *c
-	str r4, [r0]	@ *a = r4		//on utilise a conservé précedemment
+	str r4, [r0]		@ *a = r4	//on utilise a conservé précedemment
 
 	add	r5, r5, r2	@ r5 = *b + *c
-	str r5, [r1]	@ *b = r5		//on utilise b conservé précedemment 
+	str r5, [r1]		@ *b = r5	//on utilise b conservé précedemment 
 
 variable:
 	.word	a
