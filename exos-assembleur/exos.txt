@@ -28,11 +28,17 @@ uint32_t *c; // global variable
 *b += *c;
 
 Comparez avec ce que produit GCC, ainsi :
-void f() {
-*a += *c ;
-*b += *c ;
+void f() 
+{
+	*a += *c ;
+	*b += *c ;
 }
 Puis : arm-none-eabi-gcc -O2 -S t.c -o -
 
 Q: Pourquoi GCC charge-t-il deux fois le contenu de *c au lieu d'une seule ?
-R:
+R: Le premier chargement permet de c permet d'obtenir le contenu à l'adresse c. Tandi que le second chargement de c permet d'obtenir le contenu pointé par l'adresse c. 
+
+ldr	r3, .L2		; r3 = &c
+ldr	r1, [r3]	; r1 = c
+ldr	ip, [r1]	; ip = *c
+.L2: .word c

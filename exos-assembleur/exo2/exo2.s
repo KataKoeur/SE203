@@ -23,18 +23,23 @@
 @ Code écrit par mes soins
 @--------------------------------------------------------
 f:
-	ldr	r0, =a		@ on charge a dans r0
-	mov	r0, [r0]	@ déréférencement de a dans r0
-	ldr	r1, =b		@ on charge b dans r1
-	mov	r1, [r1]	@ déréférencement de a dans r1
-	ldr	r2, =c		@ on charge c dans r2
-	mov	r2, [r2]	@ déréférencement de a dans r2
+	ldr	r0, =a		@ r0 = &a
+	ldr	r0, [r0]	@ r0 = a 	//on garde a dans r0 car on en aura besoin plus bas.
+	ldr	r4, [r0]	@ r4 = *a
 
-	add	r0, r0, r2	@ a = a + c ;
-	str r0, [r0]		@ on sauvegarde r0 dans *a
+	ldr	r1, =b		@ r1 = &b
+	ldr	r1, [r1]	@ r1 = b 	//on garde b dans r1 car on en aura besoin plus bas.
+	ldr	r5, [r1]	@ r5 = *b
+	
+	ldr	r2, =c		@ r2 = &c
+	ldr	r2, [r2]	@ r2 = c
+	ldr	r2, [r2]	@ r2 = *c
 
-	add	r1, r1, r2	@ b = b + c ;
-	str r1, [r1]		@ on sauvegarde r1 dans *b
+	add	r4, r4, r2	@ r4 = *a + *c
+	str r4, [r0]	@ *a = r4		//on utilise a conservé précedemment
+
+	add	r5, r5, r2	@ r5 = *b + *c
+	str r5, [r1]	@ *b = r5		//on utilise b conservé précedemment 
 
 variable:
 	.word	a
