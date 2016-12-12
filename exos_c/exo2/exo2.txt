@@ -1,5 +1,7 @@
 # Exercice 2
 
+## Question 1
+
 Q: Sur un PC Linux x86_64 actuel et par adresses croissantes, dans quel ordre
 sont stockées les sections suivantes : text, data*, rodata*, bss, pile et tas ?
 
@@ -50,6 +52,8 @@ affiche la table des symboles du fichier ELF exo2.
 00000000006009d5 l     O .bss               0000000000000001 z.2266
 00000000006009d8 g     O .bss               0000000000000004 y
 00000000006009e0 g       .bss               0000000000000000 _end
+
+## Question 2
 
 Q: Dans quel sens croit la pile ?
 

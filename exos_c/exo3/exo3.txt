@@ -1,5 +1,7 @@
 # Exercice 3
 
+## Question 1
+
 Q: Justifier la taille de .rodata dans le slide 90 "Anatomie d'un
 exécutables / Les sections".
 
@@ -12,6 +14,7 @@ Cela se vérifie en comptant le nombre de caractère dans la chaine sans oublier
 compter le '\0' qui marque la fin de la chaine et qui n'est pas visible sur le code
 en C. On obtient donc 14 en décimal et 0x0e en hexadécimal.
 
+## Question 2
 
 Q: Compilez sans édition de lien le même code (slide 88) pour ARM avec
 une chaîne récente - gcc 4.8 au moins - et avec les optimisations
@@ -20,6 +23,7 @@ taille des sections de données que vous obtenez.
 
 R:
 
+## Question 3
 
 Q: Remplacez const char mesg[] par static const char mesg[]. Expliquez les
 différences dans les sections de données par rapport à la question précédente
@@ -27,6 +31,7 @@ différences dans les sections de données par rapport à la question précéden
 
 R:
 
+## Question 4
 
 Q: Remplacez const char mesg[] par const char *mesg. puis par
 const char * const mesg. Expliquez les différences dans le code généré et les

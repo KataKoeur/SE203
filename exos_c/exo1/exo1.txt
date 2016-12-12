@@ -1,8 +1,9 @@
 # Exercice 1
 
-Slide 93 : pour y, l'adresse est "4", ce qui est très bizarre.
+## Question 1
 
-Q: En vous aidant du manuel d'objdump et en expérimentant avec, pour y, des types
+Q: Slide 93 : pour y, l'adresse est "4", ce qui est très bizarre.
+En vous aidant du manuel d'objdump et en expérimentant avec, pour y, des types
 de tailles différentes (plus et moins grandes), corrigez le slide. On compilera
 pour ARM. N'oubliez pas de fournir le code des expérimentations que vous avez faites.
 
