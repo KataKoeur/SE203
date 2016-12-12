@@ -1,0 +1,53 @@
+# Exercice 1
+
+Slide 93 : pour y, l'adresse est "4", ce qui est très bizarre.
+
+Q: En vous aidant du manuel d'objdump et en expérimentant avec, pour y, des types
+de tailles différentes (plus et moins grandes), corrigez le slide. On compilera
+pour ARM. N'oubliez pas de fournir le code des expérimentations que vous avez faites.
+
+R: On remarque que modifier la taille de y permet de modifier en même temps l'adresse.
+L'adresse = la taille = le nombre d'octet de la variable globale non initialisé.
+
+
+## int32_t y;
+
+a505-03% arm-none-eabi-objdump -t exo1.o
+exo1.o:     file format elf32-littlearm
+
+SYMBOL TABLE:
+00000000 l    df *ABS*            00000000 exo1.c
+00000000 l    d  .text            00000000 .text
+00000000 l    d  .data            00000000 .data
+00000000 l    d  .bss             00000000 .bss
+00000000 l    d  .rodata          00000000 .rodata
+00000000 l       .bss             00000000 z.5179
+00000000 l    d  .comment         00000000 .comment
+00000000 l    d  .ARM.attributes  00000000 .ARM.attributes
+00000000 g     O .data            00000004 x
+00000004       O *COM*            00000004 y
+00000000 g     O .rodata          0000000e mesg
+00000000 g     F .text            000000b8 main
+00000000         *UND*            00000000 puts
+00000000         *UND*            00000000 printf
+
+## int8_t y;
+
+a505-03% arm-none-eabi-objdump -t exo1.o
+exo1.o:     file format elf32-littlearm
+
+SYMBOL TABLE:
+00000000 l    df *ABS*            00000000 exo1.c
+00000000 l    d  .text            00000000 .text
+00000000 l    d  .data            00000000 .data
+00000000 l    d  .bss             00000000 .bss
+00000000 l    d  .rodata          00000000 .rodata
+00000000 l       .bss             00000000 z.5179
+00000000 l    d  .comment         00000000 .comment
+00000000 l    d  .ARM.attributes  00000000 .ARM.attributes
+00000000 g     O .data            00000004 x
+00000001       O *COM*            00000001 y
+00000000 g     O .rodata          0000000e mesg
+00000000 g     F .text            000000c4 main
+00000000         *UND*            00000000 puts
+00000000         *UND*            00000000 printf
