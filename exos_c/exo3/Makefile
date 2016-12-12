@@ -2,8 +2,8 @@
 
 # Variables
 
-EXE	= exo1
-SOURCES	= exo1.c
+EXE 	= exo3
+SOURCES	= exo3.c
 
 CC 	= arm-none-eabi-gcc
 CFLAGS	= -std=gnu99 -Wall -O1
@@ -12,10 +12,10 @@ CFLAGS	= -std=gnu99 -Wall -O1
 
 all: $(EXE)
 
-$(EXE): exo1.o
+$(EXE): exo3.o
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-symbol_table: exo1.o
+symbol_table: exo3.o
 	arm-none-eabi-objdump -t $^
 
 clean:
