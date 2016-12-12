@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int32_t x =34;
-int8_t y;
+int32_t y;
 
 const char mesg[] ="Hello World!\n";
 

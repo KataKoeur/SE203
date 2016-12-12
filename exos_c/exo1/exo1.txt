@@ -9,6 +9,9 @@ pour ARM. N'oubliez pas de fournir le code des expérimentations que vous avez f
 R: On remarque que modifier la taille de y permet de modifier en même temps l'adresse.
 L'adresse = la taille = le nombre d'octet de la variable globale non initialisé.
 
+Un Makefile est à disposition dans le répertoire exo1 permettant avec la commande
+"make symbol_table" de compiler le fichier exo1.c et d'ouvrir la table des symboles
+de l'objet exo1.o.
 
 ## int32_t y;
 
