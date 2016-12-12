@@ -3,82 +3,65 @@
 Q: Sur un PC Linux x86_64 actuel et par adresses croissantes, dans quel ordre
 sont stockées les sections suivantes : text, data*, rodata*, bss, pile et tas ?
 
-R:
+R: Avec la table des symboles ci-dessous, on remarque les sections est ordonnée
+de la façon suivante:
+
+.text
+.rodata
+///////
+.data
+.bss
+.heap
+///////
+.stack
+
+Concernant la position de la pile et du tas. on observe en exécutant exo2 que
+la pile est situé en dessus du tas qui lui-même est situé en dessous de bss
 
 La table des symboles est générée avec la commande "make symbol_table". Cette dernière
 affiche la table des symboles du fichier ELF exo2.
 
-exo2:     format de fichier elf64-x86-64
-
-000000000040021c l    d  .note.ABI-tag      0000000000000000 .note.ABI-tag
-000000000040023c l    d  .note.gnu.build-id 0000000000000000 .note.gnu.build-id
-0000000000400260 l    d  .gnu.hash          0000000000000000 .gnu.hash
-0000000000400280 l    d  .dynsym            0000000000000000 .dynsym
-00000000004002f8 l    d  .dynstr            0000000000000000 .dynstr
-000000000040033c l    d  .gnu.version       0000000000000000 .gnu.version
-0000000000400348 l    d  .gnu.version_r     0000000000000000 .gnu.version_r
-0000000000400368 l    d  .rela.dyn          0000000000000000 .rela.dyn
-0000000000400380 l    d  .rela.plt          0000000000000000 .rela.plt
-00000000004003e0 l    d  .init              0000000000000000 .init
-0000000000400400 l    d  .plt               0000000000000000 .plt
+...
 0000000000400450 l    d  .text              0000000000000000 .text
-0000000000400614 l    d  .fini              0000000000000000 .fini
-0000000000400620 l    d  .rodata            0000000000000000 .rodata
-0000000000400668 l    d  .eh_frame_hdr      0000000000000000 .eh_frame_hdr
-00000000004006a0 l    d  .eh_frame          0000000000000000 .eh_frame
-0000000000600798 l    d  .init_array        0000000000000000 .init_array
-00000000006007a0 l    d  .fini_array        0000000000000000 .fini_array
-00000000006007a8 l    d  .jcr               0000000000000000 .jcr
-00000000006007b0 l    d  .dynamic           0000000000000000 .dynamic
-0000000000600980 l    d  .got               0000000000000000 .got
-0000000000600988 l    d  .got.plt           0000000000000000 .got.plt
-00000000006009c0 l    d  .data              0000000000000000 .data
-00000000006009d4 l    d  .bss               0000000000000000 .bss
-0000000000000000 l    d  .comment           0000000000000000 .comment
-0000000000000000 l    df *ABS*              0000000000000000 crtstuff.c
-00000000006007a8 l     O .jcr               0000000000000000 __JCR_LIST__
+0000000000400546 g     F .text              0000000000000055 main
 0000000000400480 l     F .text              0000000000000000 deregister_tm_clones
 00000000004004c0 l     F .text              0000000000000000 register_tm_clones
-0000000000400500 l     F .text              0000000000000000 __do_global_dtors_aux
-00000000006009d4 l     O .bss               0000000000000001 completed.6661
-00000000006007a0 l     O .fini_array        0000000000000000 __do_global_dtors_aux_fini_array_entry
+0000000000400500 l     F .text              0000000000000000 __do_global_dtors_au
 0000000000400520 l     F .text              0000000000000000 frame_dummy
-0000000000600798 l     O .init_array        0000000000000000 __frame_dummy_init_array_entry
-0000000000000000 l    df *ABS*              0000000000000000 exo2.c
-00000000006009d5 l     O .bss               0000000000000001 z.2266
-0000000000000000 l    df *ABS*              0000000000000000 crtstuff.c
-0000000000400790 l     O .eh_frame          0000000000000000 __FRAME_END__
-00000000006007a8 l     O .jcr               0000000000000000 __JCR_END__
-0000000000000000 l    df *ABS*              0000000000000000
-00000000006007a0 l       .init_array        0000000000000000 __init_array_end
-00000000006007b0 l     O .dynamic           0000000000000000 _DYNAMIC
-0000000000600798 l       .init_array        0000000000000000 __init_array_start
-0000000000600988 l     O .got.plt           0000000000000000 _GLOBAL_OFFSET_TABLE_
 0000000000400610 g     F .text              0000000000000002 __libc_csu_fini
-0000000000400658 g     O .rodata            000000000000000e mesg
-0000000000000000  w      *UND*              0000000000000000 _ITM_deregisterTMCloneTable
-00000000006009c0  w      .data              0000000000000000 data_start
-0000000000000000       F *UND*              0000000000000000 puts@@GLIBC_2.2.5
-00000000006009d4 g       .data              0000000000000000 _edata
-00000000006009d0 g     O .data              0000000000000004 x
-0000000000400614 g     F .fini              0000000000000000 _fini
-0000000000000000       F *UND*              0000000000000000 printf@@GLIBC_2.2.5
-0000000000000000       F *UND*              0000000000000000 __libc_start_main@@GLIBC_2.2.5
-00000000006009c0 g       .data              0000000000000000 __data_start
-0000000000000000  w      *UND*              0000000000000000 __gmon_start__
-00000000006009c8 g     O .data              0000000000000000 .hidden __dso_handle
-0000000000400620 g     O .rodata            0000000000000004 _IO_stdin_used
 00000000004005a0 g     F .text              0000000000000065 __libc_csu_init
-00000000006009e0 g       .bss               0000000000000000 _end
 0000000000400450 g     F .text              0000000000000000 _start
-00000000006009d8 g     O .bss               0000000000000004 y
-00000000006009d4 g       .bss               0000000000000000 __bss_start
-0000000000400546 g     F .text              0000000000000055 main
-0000000000000000  w      *UND*              0000000000000000 _Jv_RegisterClasses
+...
+0000000000400620 l    d  .rodata            0000000000000000 .rodata
+0000000000400658 g     O .rodata            000000000000000e mesg
+0000000000400620 g     O .rodata            0000000000000004 _IO_stdin_used
+...
+00000000006009c0 l    d  .data              0000000000000000 .data
+00000000006009c0  w      .data              0000000000000000 data_start
+00000000006009c0 g       .data              0000000000000000 __data_start
+00000000006009c8 g     O .data              0000000000000000 .hidden __dso_handle
+00000000006009d0 g     O .data              0000000000000004 x
+00000000006009d4 g       .data              0000000000000000 _edata
 00000000006009d8 g     O .data              0000000000000000 .hidden __TMC_END__
-0000000000000000  w      *UND*              0000000000000000 _ITM_registerTMCloneTable
-00000000004003e0 g     F .init              0000000000000000 _init
+...
+00000000006009d4 l    d  .bss               0000000000000000 .bssx
+00000000006009d4 l     O .bss               0000000000000001 completed.6661
+00000000006009d4 g       .bss               0000000000000000 __bss_start
+00000000006009d5 l     O .bss               0000000000000001 z.2266
+00000000006009d8 g     O .bss               0000000000000004 y
+00000000006009e0 g       .bss               0000000000000000 _end
 
 Q: Dans quel sens croit la pile ?
 
-R:
+R: On remarque en exécutant exo2 que la pile décroît. C'est-à-dire que l'adresse
+des variables locale non static initialisé diminue.
+
+a505-03% ./exo2
+globale1  = 0x600aa4
+globale2  = 0x600aa0
+ptr1      = 0x1380010
+ptr2      = 0x1380030
+locale1   = 0x7ffe7d4f1b4e
+locale2   = 0x7ffe7d4f1b4c
+locale3   = 0x7ffe7d4f1b4a
+locale4   = 0x7ffe7d4f1b48
