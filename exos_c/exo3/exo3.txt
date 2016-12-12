@@ -1,0 +1,35 @@
+# Exercice 3
+
+Q: Justifier la taille de .rodata dans le slide 90 "Anatomie d'un
+exécutables / Les sections".
+
+R: La taille de .rodata se calcul suivant la taille de la variable constante mesg.
+
+codeC: const char mesg[] ="Hello World!\n";
+Objet: 00000000 g O .rodata 0000000e mesg
+
+Cela se vérifie en comptant le nombre de caractère dans la chaine sans oublier de
+compter le '\0' qui marque la fin de la chaine et qui n'est pas visible sur le code
+en C. On obtient donc 14 en décimal et 0x0e en hexadécimal.
+
+
+Q: Compilez sans édition de lien le même code (slide 88) pour ARM avec
+une chaîne récente - gcc 4.8 au moins - et avec les optimisations
+suivantes : Os, O0, O1 et O2. Pour chaque niveau d'optimisation, justifiez la
+taille des sections de données que vous obtenez.
+
+R:
+
+
+Q: Remplacez const char mesg[] par static const char mesg[]. Expliquez les
+différences dans les sections de données par rapport à la question précédente
+(elles dépendent ici aussi des optimisations).
+
+R:
+
+
+Q: Remplacez const char mesg[] par const char *mesg. puis par
+const char * const mesg. Expliquez les différences dans le code généré et les
+sections de données par rapport à la question 2.
+
+R:
