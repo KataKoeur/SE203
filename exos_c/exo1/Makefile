@@ -6,7 +6,7 @@ EXE 		= exo1
 SOURCES	= exo1.c
 
 CC 			= arm-none-eabi-gcc
-CFLAGS	= -Wall -O1
+CFLAGS	= -std=gnu99 -Wall -O1
 
 # Règles
 
