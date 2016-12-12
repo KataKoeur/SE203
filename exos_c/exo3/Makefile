@@ -5,7 +5,7 @@
 EXE 	= exo3
 SOURCES	= exo3.c
 
-CC 	= arm-none-eabi-gcc
+CC 	= arm-none-eabi-gcc-5.4.1
 CFLAGS	= -std=gnu99 -Wall -O1
 
 # Règles

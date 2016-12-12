@@ -21,7 +21,88 @@ une chaîne récente - gcc 4.8 au moins - et avec les optimisations
 suivantes : Os, O0, O1 et O2. Pour chaque niveau d'optimisation, justifiez la
 taille des sections de données que vous obtenez.
 
-R:
+R: J'obtiens les résultats suivants avec le compilateur suivant 'arm-none-eabi-gcc-5.4.1'
+On observe la taille de main diminuer en fonction de l'optimisation:
+
+optimisation  -O0   -O1   -O2   -Os
+main          0xb8  0x74  0x74  0x70
+
+### Optimisation -O0
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	          00000000 exo3.c
+00000000 l    d  .text	          00000000 .text
+00000000 l    d  .data	          00000000 .data
+00000000 l    d  .bss	            00000000 .bss
+00000000 l    d  .rodata	        00000000 .rodata
+00000000 l       .bss	            00000000 z.5175
+00000000 l    d  .comment	        00000000 .comment
+00000000 l    d  .ARM.attributes	00000000 .ARM.attributes
+00000000 g     O .data	          00000004 x
+00000004       O *COM*	          00000004 y
+00000000 g     O .rodata	        0000000e mesg
+00000000 g     F .text	          000000b8 main
+00000000         *UND*	          00000000 puts
+00000000         *UND*	          00000000 printf
+
+### Optimisation -O1
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	          00000000 exo3.c
+00000000 l    d  .text	          00000000 .text
+00000000 l    d  .data	          00000000 .data
+00000000 l    d  .bss	            00000000 .bss
+00000000 l    d  .rodata	        00000000 .rodata
+00000000 l    d  .rodata.str1.4   00000000 .rodata.str1.4
+00000000 l     O .bss	            00000001 z.5175
+00000000 l    d  .comment	        00000000 .comment
+00000000 l    d  .ARM.attributes  00000000 .ARM.attributes
+00000000 g     F .text	          00000074 main
+00000000         *UND*	          00000000 puts
+00000000         *UND*	          00000000 printf
+00000004       O *COM*	          00000004 y
+00000000 g     O .rodata	        0000000e mesg
+00000000 g     O .data	          00000004 x
+
+### Optimisation -O2
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	          00000000 exo3.c
+00000000 l    d  .text	          00000000 .text
+00000000 l    d  .data	          00000000 .data
+00000000 l    d  .bss	            00000000 .bss
+00000000 l    d  .text.startup	  00000000 .text.startup
+00000000 l    d  .rodata	        00000000 .rodata
+00000000 l    d  .rodata.str1.4   00000000 .rodata.str1.4
+00000000 l     O .bss	            00000001 z.5175
+00000000 l    d  .comment	        00000000 .comment
+00000000 l    d  .ARM.attributes  00000000 .ARM.attributes
+00000000 g     F .text.startup	  00000074 main
+00000000         *UND*	          00000000 puts
+00000000         *UND*	          00000000 printf
+00000004       O *COM*	          00000004 y
+00000000 g     O .rodata	        0000000e mesg
+00000000 g     O .data	          00000004 x
+
+### Optimisation -Os
+
+SYMBOL TABLE:
+00000000 l    df *ABS*	          00000000 exo3.c
+00000000 l    d  .text	          00000000 .text
+00000000 l    d  .data	          00000000 .data
+00000000 l    d  .bss	            00000000 .bss
+00000000 l    d  .text.startup	  00000000 .text.startup
+00000000 l    d  .rodata	        00000000 .rodata
+00000000 l    d  .rodata.str1.1	  00000000 .rodata.str1.1
+00000000 l     O .bss	            00000001 z.5175
+00000000 l    d  .comment	        00000000 .comment
+00000000 l    d  .ARM.attributes  00000000 .ARM.attributes
+00000000 g     F .text.startup	  00000070 main
+00000000         *UND*	          00000000 puts
+00000000         *UND*	          00000000 printf
+00000004       O *COM*	          00000004 y
+00000000 g     O .rodata	        0000000e mesg
+00000000 g     O .data	          00000004 x
 
 ## Question 3
 
