@@ -110,7 +110,8 @@ Q: Remplacez const char mesg[] par static const char mesg[]. Expliquez les
 différences dans les sections de données par rapport à la question précédente
 (elles dépendent ici aussi des optimisations).
 
-R:
+R: A l'exception de l'optimisation -O0, les compilations en -O1, -O2 et -Os font
+disparaitre la variable mesg de la table des symboles.
 
 ## Question 4
 
