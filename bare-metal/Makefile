@@ -22,5 +22,8 @@ startgdbserver:
 gdb: $(EXE)
 	arm-none-eabi-gdb $^
 
+objdump: $(EXE)
+	arm-none-eabi-objdump -h $^
+
 clean:
 	@rm -f $(OBJ) $(EXE)
