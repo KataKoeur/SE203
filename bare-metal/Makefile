@@ -16,11 +16,11 @@ all: $(EXE)
 
 $(EXE): $(OBJ)
 
-gdb_serveur:
+startgdbserver:
 	JLinkGDBServer -if swd -device "MKL46Z256xxx4" -LocalhostOnly
 
 gdb: $(EXE)
-	arm-none-eabi-gdb $@
+	arm-none-eabi-gdb $^
 
 clean:
 	@rm -f $(OBJ) $(EXE)
