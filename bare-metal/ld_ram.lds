@@ -7,10 +7,10 @@ MEMORY
 
 SECTIONS
 {
-   .text    : { *(.text) }    > RAMH
-   .rodata  : { *(.rodata) }  > RAMH
-   .data    : { *(.data) }    > RAMH
-   .bss     : { *(.bss) }     > RAMH
+   .text    : { *(.text) }          > RAMH
+   .rodata  : { *(.rodata) }        > RAMH
+   .data    : { *(.data) }          > RAMH
+   .bss     : { *(.bss) *(COMMON) } > RAMH
 }
 
 ENTRY(main)
