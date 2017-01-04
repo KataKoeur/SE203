@@ -1,6 +1,14 @@
 MEMORY
 {
-	flash (!rx) : ORIGIN = 0x00000000, LENGTH = 256K
+	flash (!r)  : ORIGIN = 0x00000000, LENGTH = 256K
 	RAML  (!rx) : ORIGIN = 0x1fffe000, LENGTH = 8K
 	RAMH  (!rx) : ORIGIN = 0x20000000, LENGTH = 24K
+}
+
+SECTIONS
+{
+	.text 	: { *(.text) } 		> RAMH
+	.rodata : { *(.rodata) } 	> RAMH
+	.data 	: { *(.data) } 		> RAMH
+	.bss 	: { *(.bss) } 		> RAMH
 }
