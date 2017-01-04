@@ -21,3 +21,16 @@ Consultable dans le dossier exos_c/
 Consultable dans le dossier bare-metal/
 
 Vous allez développer sur des cartes FRDM-KL46Z. Ces cartes sont basées sur un microcontrôleur de Freescale, le MKL46Z256VLL4. Un microcontrôleur est un circuit intégré rassemblant un coeur de processeur ainsi que plusieurs périphériques usuels. En l'occurrence le coeur de processeur est un ARM Cortex M0+ associé à plusieurs périphériques.
+
+## Introduction
+
+Mise en place du dossier de travail.
+Création d'un Makefile, d'un .gdbinit et d'un repertoire regroupant toute la documentation.
+
+Il faut penser à ajouter la ligne "set auto-load safe-path /" dans le son .gdbinit local pour retirer la protection par défaut.
+
+## Création d'un executable
+
+Création d'un linker script charger de réaliser le mapping mémoire.
+On place pour commencer tout le code dans la RAMH (0x20000000).
+Pour vérifier que notre programme est bien dans logé au bon endroit, il faut compiler le programme en 2 temps (les objetsn puis l'éxécutable) pour ensuite faire un objdump -h. Penser à ajouter le flag -nostdlib lors de l'édition de lien.
