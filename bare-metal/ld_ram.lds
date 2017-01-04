@@ -13,4 +13,4 @@ SECTIONS
    .bss     : { *(.bss) }     > RAMH
 }
 
-ENTRY(RAMH)
+ENTRY(main)
