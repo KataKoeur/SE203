@@ -1,8 +1,8 @@
 void init_bss()
 {
-   int *dst = &_etext;
+   int *dst = &_end_of_text;
 
-   for(dst = &_bstart; dst < &_bend; dst++)
+   for(dst = &_start_of_bss; dst < &_end_of_bss; dst++)
    {
       *dst = 0;
    }
