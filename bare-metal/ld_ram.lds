@@ -13,4 +13,6 @@ SECTIONS
    .bss     : { *(.bss) *(COMMON) } > RAMH
 }
 
-ENTRY(main)
+ENTRY(_start)
+
+_stack = ORIGIN(RAML) + ORIGIN(RAML);

@@ -1,16 +1,16 @@
 .PHONY: all clean
 
 CC = arm-none-eabi-gcc
+AS = arm-none-eabi-as
 
 CFLAGS  = -c -g -O1 -mcpu=cortex-m0plus -mthumb
+ASFLAGS = -g -mcpu=cortex-m0plus
 LDFLAGS = -T ld_ram.lds -nostdlib
 
 EXE = main
-SRC = main.c
-OBJ = main.o
-
-# arm-none-eabi-gcc -T ld_ram.lds main.o -o main
-# arm-none-eabi-gcc -c -g -O1 -mcpu=cortex-m0plus -mthumb $^ -o $@
+SRC = main.c init.c
+ASM = crt0.s
+OBJ = main.o init.o crt0.o
 
 all: $(EXE)
 
