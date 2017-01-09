@@ -22,8 +22,8 @@ SECTIONS
                   _end_of_data = .;
                } > RAMH
 
-   .bss     :  { 
-                  _start_of bss = .;
+   .bss     :  {
+                  _start_of_bss = .;
                   *(.bss) *(COMMON)
                   _end_of_bss = .;
                } > RAMH
@@ -31,4 +31,4 @@ SECTIONS
 
 ENTRY(_start)
 
-_stack = ORIGIN(RAML) + ORIGIN(RAML);
+_stack = ORIGIN(RAMH);
