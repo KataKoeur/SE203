@@ -7,10 +7,26 @@ MEMORY
 
 SECTIONS
 {
-   .text    : { *(.text) }          > RAMH
-   .rodata  : { *(.rodata) }        > RAMH
-   .data    : { *(.data) }          > RAMH
-   .bss     : { *(.bss) *(COMMON) } > RAMH
+   .text    :  { 
+                  *(.text)
+                  _end_of_text = .;
+               } > RAMH
+
+   .rodata  :  { 
+                  *(.rodata)
+               } > RAMH
+
+   .data    :  { 
+                  _start_of_data = .;
+                  *(.data)
+                  _end_of_data = .;
+               } > RAMH
+
+   .bss     :  { 
+                  _start_of bss = .;
+                  *(.bss) *(COMMON)
+                  _end_of_bss = .;
+               } > RAMH
 }
 
 ENTRY(_start)
