@@ -8,9 +8,9 @@ ASFLAGS = -g -mcpu=cortex-m0plus
 LDFLAGS = -T ld_ram.lds -nostdlib
 
 EXE = main
-SRC = main.c init.c
+SRC = main.c init.c led.c
 ASM = crt0.s
-OBJ = main.o init.o crt0.o
+OBJ = main.o init.o led.o crt0.o
 
 all: $(EXE)
 
