@@ -6,3 +6,6 @@ _start:
 
    bl init_bss       @initialisation de la bss
    bl main           @lancement du programme principale
+
+_end:
+   bl _end
