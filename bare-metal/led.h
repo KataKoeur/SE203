@@ -10,7 +10,13 @@
 #define GPIOE_PDDR  (*(volatile int *)0x400ff114)
 #define GPIOD_PCOR  (*(volatile int *)0x400ff0c8)
 #define GPIOE_PCOR  (*(volatile int *)0x400ff108)
+#define GPIOD_PSOR  (*(volatile int *)0x400ff0c4)
+#define GPIOE_PSOR  (*(volatile int *)0x400ff104)
 
 void led_init();
+void led_g_on();
+void led_r_on();
+void led_g_off();
+void led_r_off();
 
 #endif

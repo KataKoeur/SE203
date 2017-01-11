@@ -17,7 +17,27 @@ void led_init()
    GPIOD_PDDR = GPIOD_PDDR | 0x00000020;
    GPIOE_PDDR = GPIOE_PDDR | 0x20000000;
 
-   //allumage des leds
-   GPIOD_PCOR = GPIOD_PCOR & ~0x00000020;
-   GPIOE_PCOR = GPIOE_PCOR & ~0x20000000;
+   //extinction des LEDs par défaut
+   led_g_off();
+   led_r_off();
+}
+
+void led_g_on()
+{
+   GPIOD_PCOR = 0x00000020;
+}
+
+void led_r_on()
+{
+   GPIOE_PCOR = 0x20000000;
+}
+
+void led_g_off()
+{
+   GPIOD_PSOR = 0x00000020;
+}
+
+void led_r_off()
+{
+   GPIOE_PSOR = 0x20000000;
 }
