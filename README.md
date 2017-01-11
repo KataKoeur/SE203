@@ -37,3 +37,17 @@ Pour vérifier que notre programme est logé au bon endroit, il faut compiler le
 
 Utilisation d'un crt0.s pour initialiser le pointeur de pile (sp) à l'adresse la plus haute de la zone mémoire RAML et mettre à 0 la BSS.
 Sur ARM, le pointeur de pile est full descending. Cela signifie que le pointeur va se décrémenter de 4 puis ajouter la nouvelle donnée dans la pile.
+
+# Utilisation des LEDs
+
+Pour utiliser un périphérique tel que les LEDs, il faut:
+- Activer l'horloge de leurs ports
+- Configurer leurs broches en GPIO (mode entrée/sortie)
+- Configurer leurs broches en sortie (car ce sont des LEDs)
+- Agire sur leurs broches de sorte pour modifier leurs valeurs
+
+Les LEDs s'allument à 0 et s'éteignent à 1.
+- LED verte: port D, broche 5
+- LED rouge: port E, broche 29
+
+On ne peut pour l'instant pas lancer le programme sont mettre de breakpoint.
