@@ -1,3 +1,5 @@
+//init.c
+
 void init_bss()
 {
    extern char _start_of_bss;   
