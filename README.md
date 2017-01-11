@@ -51,3 +51,7 @@ Les LEDs s'allument à 0 et s'éteignent à 1.
 - LED rouge: port E, broche 29
 
 On ne peut pour l'instant pas lancer le programme sont mettre de breakpoint.
+
+# Horloge
+
+Ajout d'un fichier objet magique qui active les horloges et permet de lancer le programme sans breakpoint.
