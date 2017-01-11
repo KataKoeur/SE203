@@ -12,11 +12,15 @@
 #define GPIOE_PCOR  (*(volatile int *)0x400ff108)
 #define GPIOD_PSOR  (*(volatile int *)0x400ff0c4)
 #define GPIOE_PSOR  (*(volatile int *)0x400ff104)
+#define GPIOD_PTOR  (*(volatile int *)0x400ff0cc)
+#define GPIOE_PTOR  (*(volatile int *)0x400ff10c)
 
 void led_init();
 void led_g_on();
 void led_r_on();
 void led_g_off();
 void led_r_off();
+void led_g_toggle();
+void led_r_toggle();
 
 #endif

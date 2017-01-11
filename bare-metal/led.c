@@ -41,3 +41,13 @@ void led_r_off()
 {
    GPIOE_PSOR = 0x20000000;
 }
+
+void led_g_toggle()
+{
+   GPIOD_PTOR = 0x00000020;
+}
+
+void led_r_toggle()
+{
+   GPIOE_PTOR = 0x20000000;
+}

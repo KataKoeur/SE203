@@ -8,20 +8,12 @@ int main (void)
 
    while(1)
    {
-      for(int i=0; i<3; i++)
-      {
-         asm volatile("nop");
-      }
-
-      led_g_on();
-      led_r_off();
+      led_g_toggle();
+      led_r_toggle();
 
       for(int i=0; i<3; i++)
       {
          asm volatile("nop");
       }
-
-      led_g_off();
-      led_r_on();
    }
 }
