@@ -8,4 +8,4 @@ _start:
    bl main           @lancement du programme principale
 
 _end:
-   bl _end
+   b _end
