@@ -1,6 +1,7 @@
 //main.c
 
 #include "led.h"
+#include "uart.h"
 
 void clocks_init();
 
