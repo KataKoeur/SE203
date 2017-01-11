@@ -7,14 +7,15 @@ CFLAGS  = -c -g -O1 -mcpu=cortex-m0plus -mthumb
 ASFLAGS = -g -mcpu=cortex-m0plus
 LDFLAGS = -T ld_ram.lds -nostdlib
 
-EXE = main
-SRC = main.c init.c led.c
-ASM = crt0.s
-OBJ = main.o init.o led.o crt0.o clocks.o
+EXE  = main.elf
+SRC  = main.c init.c led.c
+ASM  = crt0.s
+OBJ  = main.o init.o led.o crt0.o
 
 all: $(EXE)
 
 $(EXE): $(OBJ)
+	$(LINK.o) clocks.o $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 startgdbserver:
 	JLinkGDBServer -if swd -device "MKL46Z256xxx4" -LocalhostOnly
