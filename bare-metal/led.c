@@ -14,10 +14,10 @@ void led_init()
    PORTE_PCR29 = PORTE_PCR29 & ~0x00000600;
 
    //config sortie
-   GPIOD_PDDR = 0xffffffff;
-   GPIOE_PDDR = 0xffffffff;
+   GPIOD_PDDR = GPIOD_PDDR | 0x00000020;
+   GPIOE_PDDR = GPIOE_PDDR | 0x20000000;
 
    //allumage des leds
-   GPIOD_PCOR = 0x00000000;
-   GPIOE_PCOR = 0x00000000;
+   GPIOD_PCOR = GPIOD_PCOR & ~0x00000020;
+   GPIOE_PCOR = GPIOE_PCOR & ~0x20000000;
 }
