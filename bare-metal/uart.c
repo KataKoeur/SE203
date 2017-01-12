@@ -16,4 +16,9 @@ void uart_init()
    //SBR = 7
    UART0_BDH = UART0_BDH & ~0x1f;
    UART0_BDL = 0x07;
+
+   //mode 8N1
+   UART0_C1  = UART0_C1  & ~0x10; //8bits de données
+   UART0_C1  = UART0_C1  & ~0x02; //pas de parité
+   UART0_BDH = UART0_BDH & ~0x20; //1bit de stop
 }
