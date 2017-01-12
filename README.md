@@ -55,3 +55,22 @@ On ne peut pour l'instant pas lancer le programme sont mettre de breakpoint.
 # Horloge
 
 Ajout d'un fichier objet magique qui active les horloges et permet de lancer le programme sans breakpoint.
+
+# UART
+
+Calcule de l'oversampling:
+
+   Oversampling = (MGCPLLCLK/2)/(SBR * (OSR+1))
+
+avec  MGCPLLCLK/2  = 24MHz
+      Oversampling = 115200
+
+Les deux meilleurs jeux de donnée pour SBR et OSR sont:
+
+- SBR = 7  et OSR = 28
+- SBR = 29 et OSR = 6
+
+* Voir Oversampling.ods
+
+Dans les 2 cas, on obtient un Oversampling de 118226.601.
+Ce qui est bien une valeur comprise entre 115200 et 118656 (avec 3%)
