@@ -10,9 +10,9 @@ void uart_init()
    SIM_SCGC4 = SIM_SCGC4 |  0x00000400;
 
    //config oversampling
-   //OSR = 29
-   UART0_C4 = UART0_C4 |  0x1d;
-   UART0_C4 = UART0_C4 & ~0x02;
+   //OSR = 28
+   UART0_C4 = UART0_C4 |  0x1c;
+   UART0_C4 = UART0_C4 & ~0x03;
    //SBR = 7
    UART0_BDH = UART0_BDH & ~0x1f;
    UART0_BDL = 0x07;
@@ -25,11 +25,11 @@ void uart_init()
    //broche RX et TX du portA en mode UART
    SIM_SCGC5 = SIM_SCGC5 | 0x00000200;
    //RX
-   PORTA_PCR1 = PORTA_PCR1 |  0x00000300;
-   PORTA_PCR1 = PORTA_PCR1 & ~0x00000400;
+   PORTA_PCR1 = PORTA_PCR1 |  0x00000200;
+   PORTA_PCR1 = PORTA_PCR1 & ~0x00000500;
    //TX 
-   PORTA_PCR2 = PORTA_PCR2 |  0x00000300;
-   PORTA_PCR2 = PORTA_PCR2 & ~0x00000400;
+   PORTA_PCR2 = PORTA_PCR2 |  0x00000200;
+   PORTA_PCR2 = PORTA_PCR2 & ~0x00000500;
 
    //activation transmetteur récepteur
    UART0_C2 = UART0_C2 | 0x0c;
