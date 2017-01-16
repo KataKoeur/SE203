@@ -58,3 +58,12 @@ void uart_puts(const char *s)
       s++;
    }
 }
+
+void uart_gets(char *s, int size)
+{
+   for(int i = 0; i<size; i++)
+   {
+      *s = uart_getchar();
+      s++;
+   }
+}

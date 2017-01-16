@@ -11,12 +11,16 @@ int main (void)
    led_init();
    uart_init();
 
+   int size = 6;
+   char val[size];
+
    while(1)
    {
       led_g_toggle();
       led_r_toggle();
 
-      uart_puts("hello world");
+      uart_gets(val, size);
+      uart_puts(val);
 
       for(int i=0; i<10000000; i++)
       {
