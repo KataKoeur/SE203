@@ -19,6 +19,10 @@
 #define PORTD_PCR5  (*(volatile uint32_t *)0x4004c014)
 #define PORTA_PCR12 (*(volatile uint32_t *)0x40049030)
 #define PORTA_PCR4  (*(volatile uint32_t *)0x40049010)
+#define GPIOA_PDDR  (*(volatile uint32_t *)0x400ff014)
+#define GPIOB_PDDR  (*(volatile uint32_t *)0x400ff054)
+#define GPIOC_PDDR  (*(volatile uint32_t *)0x400ff094)
+#define GPIOD_PDDR  (*(volatile uint32_t *)0x400ff0d4)
 
 void matrix_init();
 
