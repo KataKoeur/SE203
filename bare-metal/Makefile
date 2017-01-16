@@ -3,7 +3,7 @@
 CC = arm-none-eabi-gcc
 AS = arm-none-eabi-as
 
-CFLAGS  = -c -g -O1 -mcpu=cortex-m0plus -mthumb
+CFLAGS  = -c -g -O1 -mcpu=cortex-m0plus -mthumb -std=gnu99 -Wall -Wextra -Werror
 ASFLAGS = -g -mcpu=cortex-m0plus
 LDFLAGS = -T ld_ram.lds -nostdlib
 
