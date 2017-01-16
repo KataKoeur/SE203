@@ -23,7 +23,7 @@ void uart_init()
    UART0_BDH = UART0_BDH & ~0x20; //1bit de stop
 
    //broche RX et TX du portA en mode UART
-   SIM_SCGC5 = SIMSCGC5 | 0x00000200;
+   SIM_SCGC5 = SIM_SCGC5 | 0x00000200;
    //RX
    PORTA_PCR1 = PORTA_PCR1  |  0x00000300;
    PORTA_PCR1 = PORTA_PCR1  & ~0x00000400;
