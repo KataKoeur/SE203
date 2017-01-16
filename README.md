@@ -76,9 +76,15 @@ Dans les 2 cas, on obtient un Oversampling de 118226.601.
 Ce qui est bien une valeur comprise entre 115200 et 118656 (avec 3%)
 
 La fonction uart_putchar() fonctionne bien.
-La foncrion uart_getchar() fonctionne bien tant que l'on ne lui envoie pas plusieurs caracteres en même temps.
+La fonction uart_getchar() fonctionne bien tant que l'on ne lui envoie pas plusieurs caracteres en même temps.
 La fonction uart_puts() fonctionne très bien
-La fonction uart_gets() fonctionne très bien, néanmoins, le programme se bloque lorsque l'on n'envoie pas le bon nombre de caractère (variable size).
+La fonction uart_gets() fonctionne très bien, néanmoins, le programme se bloque lorsque l'on n'envoie pas le bon nombre de caractères (variable size).
 
-Effectivement, le programme reste bloqué sur l'attente que le buffer de reception soit plein.
-De plus, il faut bien prendre en compte que CuteCom envoie par défaut un retour chariot (\n) qui compte comme un caractère dans la chaine récupéré.
+Effectivement, le programme reste bloqué sur l'attente que le buffer de réception soit plein.
+De plus, il faut bien prendre en compte que CuteCom envoie par défaut un retour chariot (\n) qui compte comme un caractère dans la chaine récupérée.
+
+Le test checksum.py à été validé !
+Pour vérifier cela, il suffit de lancer le programme en continu (c) sur la carte.
+Il faut ensuite lancer le script python checksum.
+Enfin, il faut afficher la variable sum dans gdb afin de constater que la valeur est la même que celle retourner par le script python.
+HOURAAA!!!
