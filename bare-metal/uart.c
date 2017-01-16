@@ -34,3 +34,12 @@ void uart_init()
    //activation transmetteur récepteur
    UART0_C2 = UART0_C2 | 0x0c;
 }
+
+void uart_putchar(char c)
+{
+   //attente buffer de transmission vide
+   while(UART0_S1 == (UART0_S1 & ~0x80));
+
+   //envoie du caractere c
+   UART0_D = c;
+}
