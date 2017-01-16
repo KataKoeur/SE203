@@ -11,8 +11,11 @@ int main (void)
    led_init();
    uart_init();
 
+   int sum = 0;
+
    while(1)
    {
-      uart_putchar(uart_getchar());
+      sum = sum + uart_getchar();
+      uart_putchar(sum);
    }
 }
