@@ -27,4 +27,13 @@ void matrix_init()
    GPIOB_PDDR = GPIOB_PDDR | 0x00000007;
    GPIOC_PDDR = GPIOC_PDDR | 0x00000180;
    GPIOD_PDDR = GPIOD_PDDR | 0x000000f4;
+
+   //valeurs acceptables
+   GPIOA_PCOR = 0x00003010;
+   GPIOB_PCOR = 0x00000004;
+   GPIOB_PSOR = 0x00000003;
+   GPIOC_PCOR = 0x00000300;
+   GPIOD_PCOR = 0x000000f4;
+   //100ms d'attente
+   GPIOB_PSOR = 0x00000004;
 }                                   
