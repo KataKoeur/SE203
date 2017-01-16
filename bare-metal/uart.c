@@ -43,3 +43,9 @@ void uart_putchar(char c)
    //envoie du caractere c
    UART0_D = c;
 }
+
+unsigned char uart_getchar()
+{
+   while((UART0_S1 & 0x20) == 0);
+   return UART0_D;
+}

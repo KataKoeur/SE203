@@ -74,3 +74,6 @@ Les deux meilleurs jeux de donnée pour SBR et OSR sont:
 
 Dans les 2 cas, on obtient un Oversampling de 118226.601.
 Ce qui est bien une valeur comprise entre 115200 et 118656 (avec 3%)
+
+La fonction uart_putchar() fonctionne bien.
+La foncrion uart_getchar() fonctionne bien tant que l'on ne lui envoie pas plusieurs caracteres en même temps.
