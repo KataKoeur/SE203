@@ -24,5 +24,10 @@ void uart_init()
 
    //broche RX et TX du portA en mode UART
    SIM_SCGC5 = SIMSCGC5 | 0x00000200;
-   
+   //RX
+   PORTA_PCR1  = PORTA_PCR1  |  0x00000300;
+   PORTA_PCR1  = PORTA_PCR1  & ~0x00000400;
+   //TX 
+   PORTA_PCR2  = PORTA_PCR2  |  0x00000300;
+   PORTA_PCR2  = PORTA_PCR2  & ~0x00000400;
 }
