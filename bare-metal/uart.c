@@ -49,3 +49,12 @@ unsigned char uart_getchar()
    while((UART0_S1 & 0x20) == 0);
    return UART0_D;
 }
+
+void uart_puts(const char *s)
+{
+   while(*s != '\0')
+   {
+      uart_putchar(*s);
+      s++;
+   }
+}

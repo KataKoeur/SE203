@@ -11,15 +11,12 @@ int main (void)
    led_init();
    uart_init();
 
-   unsigned char var;
-
    while(1)
    {
       led_g_toggle();
       led_r_toggle();
 
-      var = uart_getchar();
-      uart_putchar(var);
+      uart_puts("hello world");
 
       for(int i=0; i<10000000; i++)
       {
