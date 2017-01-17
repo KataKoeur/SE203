@@ -36,4 +36,82 @@ void matrix_init()
    GPIOD_PCOR = 0x000000f4;
    //100ms d'attente
    GPIOB_PSOR = 0x00000004;
-}                                   
+}
+                                     
+void SB(int x)
+{
+   if(x) GPIOB_PSOR = 0x00000001;
+   else  GPIOB_PCOR = 0x00000001;
+}
+
+void LAT(int x)
+{
+   if(x) GPIOB_PSOR = 0x00000002;
+   else  GPIOB_PCOR = 0x00000002;
+}
+
+void RST(int x)
+{
+   if(x) GPIOB_PSOR = 0x00000004;
+   else  GPIOB_PCOR = 0x00000004;
+}
+
+void SCK(int x)
+{
+   if(x) GPIOC_PSOR = 0x00000100;
+   else  GPIOC_PCOR = 0x00000100;
+}
+
+void SDA(int x)
+{
+   if(x) GPIOC_PSOR = 0x00000200;
+   else  GPIOC_PCOR = 0x00000200;
+}
+
+void C0(int x)
+{
+   if(x) GPIOA_PSOR = 0x00002000;
+   else  GPIOA_PCOR = 0x00002000;
+}
+
+void C1(int x)
+{
+   if(x) GPIOD_PSOR = 0x00000004;
+   else  GPIOD_PCOR = 0x00000004;
+}
+
+void C2(int x)
+{
+   if(x) GPIOD_PSOR = 0x00000010;
+   else  GPIOD_PCOR = 0x00000010;
+}
+
+void C3(int x)
+{
+   if(x) GPIOD_PSOR = 0x00000040;
+   else  GPIOD_PCOR = 0x00000040;
+}
+
+void C4(int x)
+{
+   if(x) GPIOD_PSOR = 0x00000080;
+   else  GPIOD_PCOR = 0x00000080;
+}
+
+void C5(int x)
+{
+   if(x) GPIOD_PSOR = 0x00000020;
+   else  GPIOD_PCOR = 0x00000020;
+}
+
+void C6(int x)
+{
+   if(x) GPIOA_PSOR = 0x00001000;
+   else  GPIOA_PCOR = 0x00001000;
+}
+
+void C7(int x)
+{
+   if(x) GPIOA_PSOR = 0x00000010;
+   else  GPIOA_PCOR = 0x00000010;
+}
