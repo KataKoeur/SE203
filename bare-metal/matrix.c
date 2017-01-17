@@ -34,7 +34,8 @@ void matrix_init()
    GPIOB_PSOR = 0x00000003;
    GPIOC_PCOR = 0x00000300;
    GPIOD_PCOR = 0x000000f4;
-   //100ms d'attente
+   //100ms d'attente minimum
+   for(int i=0; i<10000; i++) asm volatile("nop");
    GPIOB_PSOR = 0x00000004;
 }
 
@@ -114,4 +115,26 @@ void ROW7(int x)
 {
    if(x) GPIOA_PSOR = 0x00000010;
    else  GPIOA_PCOR = 0x00000010;
+}
+
+//pulsation positive
+void pulse_SCK()
+{
+   SCK(0);
+   for(int i=0; i<10000; i++) asm volatile("nop");
+   SCK(1);
+   for(int i=0; i<10000; i++) asm volatile("nop");
+   SCK(0);
+   for(int i=0; i<10000; i++) asm volatile("nop");
+}
+
+//pulsation négative
+void pulse_LAT()
+{
+   LAT(1);
+   for(int i=0; i<10000; i++) asm volatile("nop");
+   LAT(0);
+   for(int i=0; i<10000; i++) asm volatile("nop");
+   LAT(1);
+   for(int i=0; i<10000; i++) asm volatile("nop");
 }

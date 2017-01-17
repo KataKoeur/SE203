@@ -30,6 +30,7 @@
 #define GPIOD_PCOR  (*(volatile uint32_t *)0x400ff0c8)
 
 void matrix_init();
+
 void SB  (int x);
 void LAT (int x);
 void RST (int x);
@@ -43,5 +44,8 @@ void ROW4(int x);
 void ROW5(int x);
 void ROW6(int x);
 void ROW7(int x);
+
+void pulse_SCK();
+void pulse_LAT();
 
 #endif
