@@ -123,7 +123,7 @@ void pulse_SCK()
    SCK(0);
    for(int i=0; i<10000; i++) asm volatile("nop");
    SCK(1);
-   for(int i=0; i<10000; i++) asm volatile("nop");
+   for(int i=0; i<10000; i++) asm volatile("nop"); // >100ms
    SCK(0);
    for(int i=0; i<10000; i++) asm volatile("nop");
 }
@@ -132,9 +132,9 @@ void pulse_SCK()
 void pulse_LAT()
 {
    LAT(1);
-   for(int i=0; i<10000; i++) asm volatile("nop");
+   for(int i=0; i<10000; i++) asm volatile("nop"); // >25ns
    LAT(0);
-   for(int i=0; i<10000; i++) asm volatile("nop");
+   for(int i=0; i<10000; i++) asm volatile("nop"); // >7ns
    LAT(1);
    for(int i=0; i<10000; i++) asm volatile("nop");
 }
