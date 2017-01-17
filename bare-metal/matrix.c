@@ -138,3 +138,26 @@ void pulse_LAT()
    LAT(1);
    for(int i=0; i<10000; i++) asm volatile("nop");
 }
+void deactivate_rows()
+{
+   ROW0(0);
+   ROW1(0);
+   ROW2(0);
+   ROW3(0);
+   ROW4(0);
+   ROW5(0);
+   ROW6(0);
+   ROW7(0);
+}
+
+void activate_row(int row)
+{
+   if(row == 0)      ROW0(1);
+   else if(row == 1) ROW1(1);
+   else if(row == 2) ROW2(1);
+   else if(row == 3) ROW3(1);
+   else if(row == 4) ROW4(1);
+   else if(row == 5) ROW5(1);
+   else if(row == 6) ROW6(1);
+   else if(row == 7) ROW7(1);
+}

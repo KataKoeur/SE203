@@ -48,4 +48,7 @@ void ROW7(int x);
 void pulse_SCK();
 void pulse_LAT();
 
+void deactivate_rows();
+void activate_row(int row);
+
 #endif
