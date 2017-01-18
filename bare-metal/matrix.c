@@ -37,6 +37,9 @@ void matrix_init()
    //100ms d'attente minimum
    for(int i=0; i<10000; i++) asm volatile("nop");
    GPIOB_PSOR = 0x00000004;
+
+   //initialisation du bank0  
+   init_bank0();
 }
 
 void SB(int x)
@@ -188,4 +191,17 @@ void mat_set_row(int row, const rgb_color *val)
    //activation d'une colonne
    activate_row(row);
    pulse_LAT();
+}
+
+void init_bank0()
+{
+   for(int i=0; i<6; i++)
+   {
+      send_byte(1,0);
+   }
+   pulse_LAT();
+}
+
+void test_pixels()
+{
 }
