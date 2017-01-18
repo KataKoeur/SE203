@@ -53,7 +53,7 @@ void uart_putchar(char c)
 
 unsigned char uart_getchar()
 {
-   while((UART0_S1 & 0x20) == 0);
+   while((UART0_S1 & 0x20) == 0) UART0_S1 = 0x1f;
    return UART0_D;
 }
 
