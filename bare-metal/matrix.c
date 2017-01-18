@@ -173,3 +173,19 @@ void send_byte(uint8_t val, int bank)
       pulse_SCK();
    }
 }
+
+void mat_set_row(int row, const rgb_color *val)
+{
+   //envoie des 8 pixels sur le bank1
+   for(int i=0; i<8; i++)
+   {
+      send_byte(val->b, 1);
+      send_byte(val->g, 1);
+      send_byte(val->r, 1);
+      val++;
+   }
+
+   //activation d'une colonne
+   activate_row(row);
+   pulse_LAT();
+}

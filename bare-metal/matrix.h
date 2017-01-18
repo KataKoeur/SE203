@@ -64,5 +64,6 @@ void deactivate_rows();
 void activate_row(int row);
 
 void send_byte(uint8_t val, int bank);
+void mat_set_row(int row, const rgb_color *val);
 
 #endif
