@@ -121,22 +121,20 @@ void ROW7(int x)
 void pulse_SCK()
 {
    SCK(0);
-   for(int i=0; i<10000; i++) asm volatile("nop");
+   asm volatile("nop"); // >25ns
    SCK(1);
-   for(int i=0; i<10000; i++) asm volatile("nop"); // >25ns
+   asm volatile("nop"); // >25ns
    SCK(0);
-   for(int i=0; i<10000; i++) asm volatile("nop"); // >25ns
 }
 
 //pulsation négative
 void pulse_LAT()
 {
    LAT(1);
-   for(int i=0; i<10000; i++) asm volatile("nop"); // >25ns
+   asm volatile("nop"); // >25ns
    LAT(0);
-   for(int i=0; i<10000; i++) asm volatile("nop"); // >7ns
+   asm volatile("nop"); // >7ns
    LAT(1);
-   for(int i=0; i<10000; i++) asm volatile("nop");
 }
 
 void deactivate_rows()
