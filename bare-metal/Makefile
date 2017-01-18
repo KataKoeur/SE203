@@ -16,13 +16,13 @@ OBJS = main.o init.o led.o uart.o matrix.o crt0.o
 LOADLIBES = clocks.o
 
 DEPS = $(subst .o,.d,$(OBJS))
--include $(DEPS)
 
 all: $(EXE)
 
 $(EXE): $(OBJS)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
+-include $(DEPS)
 %.d : %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -MM -MF $@ -MP $<
 
