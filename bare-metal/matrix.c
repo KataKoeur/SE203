@@ -222,7 +222,7 @@ void send_byte(uint8_t val, int bank)
    SB(bank);
 
    //envoie bit à bit sur SDA
-   for(int i=7+(2*bank); i>=0; i++)
+   for(int i=5+(2*bank); i>=0; i++)
    {
       SDA(val & ~(1<<i));
       pulse_SCK();
@@ -231,7 +231,7 @@ void send_byte(uint8_t val, int bank)
 
 void mat_set_row(int row, const rgb_color *val)
 {
-   //envoie des 8 pixels sur le bank1
+   //activation d'une colonne
    for(int i=0; i<8; i++)
    {
       send_byte(val->b, 1);
@@ -240,7 +240,7 @@ void mat_set_row(int row, const rgb_color *val)
       val++;
    }
 
-   //activation d'une colonne
+   //activation d'une ligne
    activate_row(row);
    pulse_LAT();
 }
@@ -249,11 +249,26 @@ static void init_bank0()
 {
    for(int i=0; i<6; i++)
    {
-      send_byte(1,0);
+      send_byte(0xff,0);
    }
    pulse_LAT();
 }
 
 void test_pixels()
 {
+   rgb_color val[8] = {
+                        {1, 2, 3},
+                        {1, 2, 3},
+                        {1, 2, 3},
+                        {1, 2, 3},
+                        {1, 2, 3},
+                        {1, 2, 3},
+                        {1, 2, 3},
+                        {1, 2, 3}
+                      };
+   
+   for(int i=0; i<8; i++)
+   {
+      mat_set_row(i, val);
+   }
 }
