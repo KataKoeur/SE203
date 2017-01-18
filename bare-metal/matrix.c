@@ -2,10 +2,37 @@
 
 #include "matrix.h"
 
+#define SIM_SCGC5   (*(volatile uint32_t *)0x40048038)
+#define PORTB_PCR0  (*(volatile uint32_t *)0x4004a000)
+#define PORTB_PCR1  (*(volatile uint32_t *)0x4004a004)
+#define PORTB_PCR2  (*(volatile uint32_t *)0x4004a008)
+#define PORTC_PCR8  (*(volatile uint32_t *)0x4004b020)
+#define PORTC_PCR9  (*(volatile uint32_t *)0x4004b024)
+#define PORTA_PCR13 (*(volatile uint32_t *)0x4004b034)
+#define PORTD_PCR2  (*(volatile uint32_t *)0x4004c008)
+#define PORTD_PCR4  (*(volatile uint32_t *)0x4004c010)
+#define PORTD_PCR6  (*(volatile uint32_t *)0x4004c018)
+#define PORTD_PCR7  (*(volatile uint32_t *)0x4004c01c)
+#define PORTD_PCR5  (*(volatile uint32_t *)0x4004c014)
+#define PORTA_PCR12 (*(volatile uint32_t *)0x40049030)
+#define PORTA_PCR4  (*(volatile uint32_t *)0x40049010)
+#define GPIOA_PDDR  (*(volatile uint32_t *)0x400ff014)
+#define GPIOB_PDDR  (*(volatile uint32_t *)0x400ff054)
+#define GPIOC_PDDR  (*(volatile uint32_t *)0x400ff094)
+#define GPIOD_PDDR  (*(volatile uint32_t *)0x400ff0d4)
+#define GPIOA_PCOR  (*(volatile uint32_t *)0x400ff008)
+#define GPIOA_PSOR  (*(volatile uint32_t *)0x400ff004)
+#define GPIOB_PCOR  (*(volatile uint32_t *)0x400ff048)
+#define GPIOB_PSOR  (*(volatile uint32_t *)0x400ff044)
+#define GPIOC_PCOR  (*(volatile uint32_t *)0x400ff088)
+#define GPIOC_PSOR  (*(volatile uint32_t *)0x400ff084)
+#define GPIOD_PCOR  (*(volatile uint32_t *)0x400ff0c8)
+#define GPIOD_PSOR  (*(volatile uint32_t *)0x400ff0c4)
+
 void matrix_init()
 {
    //activation horloge port A B C et D
-   SIM_SCGC5 = SIM_SCGC5 | 0x00001e00;
+   SIM_SCGC5 |= 0x00001e00;
 
    //mode GPIO
    PORTB_PCR0  = (PORTB_PCR0  | 0x00000100) & ~0x00000600;
@@ -23,10 +50,10 @@ void matrix_init()
    PORTA_PCR4  = (PORTA_PCR4  | 0x00000100) & ~0x00000600;
 
    //mode sortie
-   GPIOA_PDDR = GPIOA_PDDR | 0x00003010;
-   GPIOB_PDDR = GPIOB_PDDR | 0x00000007;
-   GPIOC_PDDR = GPIOC_PDDR | 0x00000180;
-   GPIOD_PDDR = GPIOD_PDDR | 0x000000f4;
+   GPIOA_PDDR |= 0x00003010;
+   GPIOB_PDDR |= 0x00000007;
+   GPIOC_PDDR |= 0x00000180;
+   GPIOD_PDDR |= 0x000000f4;
 
    //valeurs acceptables
    GPIOA_PCOR = 0x00003010;
