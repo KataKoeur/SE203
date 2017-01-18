@@ -123,9 +123,9 @@ void pulse_SCK()
    SCK(0);
    for(int i=0; i<10000; i++) asm volatile("nop");
    SCK(1);
-   for(int i=0; i<10000; i++) asm volatile("nop"); // >100ms
+   for(int i=0; i<10000; i++) asm volatile("nop"); // >25ns
    SCK(0);
-   for(int i=0; i<10000; i++) asm volatile("nop");
+   for(int i=0; i<10000; i++) asm volatile("nop"); // >25ns
 }
 
 //pulsation négative
@@ -138,6 +138,7 @@ void pulse_LAT()
    LAT(1);
    for(int i=0; i<10000; i++) asm volatile("nop");
 }
+
 void deactivate_rows()
 {
    ROW0(0);
@@ -160,4 +161,17 @@ void activate_row(int row)
    else if(row == 5) ROW5(1);
    else if(row == 6) ROW6(1);
    else if(row == 7) ROW7(1);
+}
+
+void send_byte(uint8_t val, int bank)
+{
+   //selection registre à décalage
+   SB(bank);
+
+   //envoie bit à bit sur SDA
+   for(int i=7+(2*bank); i>=0; i++)
+   {
+      SDA(val & ~(1<<i));
+      pulse_SCK();
+   }
 }
