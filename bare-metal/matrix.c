@@ -29,6 +29,23 @@
 #define GPIOD_PCOR  (*(volatile uint32_t *)0x400ff0c8)
 #define GPIOD_PSOR  (*(volatile uint32_t *)0x400ff0c4)
 
+static void init_bank0();
+static void SB  (int x);
+static void LAT (int x);
+static void RST (int x);
+static void SCK (int x);
+static void SDA (int x);
+static void ROW0(int x);
+static void ROW1(int x);
+static void ROW2(int x);
+static void ROW3(int x);
+static void ROW4(int x);
+static void ROW5(int x);
+static void ROW6(int x);
+static void ROW7(int x);
+static void pulse_SCK();
+static void pulse_LAT();
+
 void matrix_init()
 {
    //activation horloge port A B C et D
@@ -56,99 +73,107 @@ void matrix_init()
    GPIOD_PDDR |= 0x000000f4;
 
    //valeurs acceptables
-   GPIOA_PCOR = 0x00003010;
-   GPIOB_PCOR = 0x00000004;
-   GPIOB_PSOR = 0x00000003;
-   GPIOC_PCOR = 0x00000300;
-   GPIOD_PCOR = 0x000000f4;
+   RST (0);
+   LAT (1);
+   SB  (1);
+   SCK (0);
+   SDA (0);
+   ROW0(0);
+   ROW1(0);
+   ROW2(0);
+   ROW3(0);
+   ROW4(0);
+   ROW5(0);
+   ROW6(0);
+   ROW7(0);
    //100ms d'attente minimum
    for(int i=0; i<10000; i++) asm volatile("nop");
-   GPIOB_PSOR = 0x00000004;
+   RST(1);
 
    //initialisation du bank0  
    init_bank0();
 }
 
-void SB(int x)
+static void SB(int x)
 {
    if(x) GPIOB_PSOR = 0x00000001;
    else  GPIOB_PCOR = 0x00000001;
 }
 
-void LAT(int x)
+static void LAT(int x)
 {
    if(x) GPIOB_PSOR = 0x00000002;
    else  GPIOB_PCOR = 0x00000002;
 }
 
-void RST(int x)
+static void RST(int x)
 {
    if(x) GPIOB_PSOR = 0x00000004;
    else  GPIOB_PCOR = 0x00000004;
 }
 
-void SCK(int x)
+static void SCK(int x)
 {
    if(x) GPIOC_PSOR = 0x00000100;
    else  GPIOC_PCOR = 0x00000100;
 }
 
-void SDA(int x)
+static void SDA(int x)
 {
    if(x) GPIOC_PSOR = 0x00000200;
    else  GPIOC_PCOR = 0x00000200;
 }
 
-void ROW0(int x)
+static void ROW0(int x)
 {
    if(x) GPIOA_PSOR = 0x00002000;
    else  GPIOA_PCOR = 0x00002000;
 }
 
-void ROW1(int x)
+static void ROW1(int x)
 {
    if(x) GPIOD_PSOR = 0x00000004;
    else  GPIOD_PCOR = 0x00000004;
 }
 
-void ROW2(int x)
+static void ROW2(int x)
 {
    if(x) GPIOD_PSOR = 0x00000010;
    else  GPIOD_PCOR = 0x00000010;
 }
 
-void ROW3(int x)
+static void ROW3(int x)
 {
    if(x) GPIOD_PSOR = 0x00000040;
    else  GPIOD_PCOR = 0x00000040;
 }
 
-void ROW4(int x)
+static void ROW4(int x)
 {
    if(x) GPIOD_PSOR = 0x00000080;
    else  GPIOD_PCOR = 0x00000080;
 }
 
-void ROW5(int x)
+static void ROW5(int x)
 {
    if(x) GPIOD_PSOR = 0x00000020;
    else  GPIOD_PCOR = 0x00000020;
 }
 
-void ROW6(int x)
+static void ROW6(int x)
 {
    if(x) GPIOA_PSOR = 0x00001000;
    else  GPIOA_PCOR = 0x00001000;
 }
 
-void ROW7(int x)
+static void ROW7(int x)
 {
    if(x) GPIOA_PSOR = 0x00000010;
    else  GPIOA_PCOR = 0x00000010;
 }
 
 //pulsation positive
-void pulse_SCK()
+static void pulse_SCK()
 {
    SCK(0);
    asm volatile("nop"); // >25ns
@@ -158,7 +183,7 @@ void pulse_SCK()
 }
 
 //pulsation négative
-void pulse_LAT()
+static void pulse_LAT()
 {
    LAT(1);
    asm volatile("nop"); // >25ns
@@ -220,7 +245,7 @@ void mat_set_row(int row, const rgb_color *val)
    pulse_LAT();
 }
 
-void init_bank0()
+static void init_bank0()
 {
    for(int i=0; i<6; i++)
    {
