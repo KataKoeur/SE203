@@ -24,10 +24,13 @@
 #define GPIOC_PDDR  (*(volatile uint32_t *)0x400ff094)
 #define GPIOD_PDDR  (*(volatile uint32_t *)0x400ff0d4)
 #define GPIOA_PCOR  (*(volatile uint32_t *)0x400ff008)
+#define GPIOA_PSOR  (*(volatile uint32_t *)0x400ff004)
 #define GPIOB_PCOR  (*(volatile uint32_t *)0x400ff048)
 #define GPIOB_PSOR  (*(volatile uint32_t *)0x400ff044)
 #define GPIOC_PCOR  (*(volatile uint32_t *)0x400ff088)
+#define GPIOC_PSOR  (*(volatile uint32_t *)0x400ff084)
 #define GPIOD_PCOR  (*(volatile uint32_t *)0x400ff0c8)
+#define GPIOD_PSOR  (*(volatile uint32_t *)0x400ff0c4)
 
 void matrix_init();
 
