@@ -6,7 +6,8 @@ CC = $(PREFIX)gcc
 DL = $(PREFIX)ld
 AS = $(PREFIX)as
 
-CFLAGS  = -c -g -O1 -mcpu=cortex-m0plus -mthumb -std=gnu99 -Wall -Wextra -Werror
+TARGET_ARCH = -mcpu=cortex-m0plus -mthumb
+CFLAGS  = -c -g -O1 -std=gnu99 -Wall -Wextra -Werror
 ASFLAGS = -g -mcpu=cortex-m0plus
 LDFLAGS = -T ld_ram.lds -nostdlib
 
@@ -14,7 +15,7 @@ EXE = main.elf
 OBJS = main.o init.o led.o uart.o matrix.o crt0.o
 LOADLIBES = clocks.o
 
-DEPS = $(subst .o,.d,$(OBJ))
+DEPS = $(subst .o,.d,$(OBJS))
 -include $(DEPS)
 
 all: $(EXE)
