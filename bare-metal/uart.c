@@ -25,7 +25,7 @@ void uart_init()
    //OSR = 28
    UART0_C4 = 0x1c;
    //SBR = 7
-   UART0_BDH = 0x1f;
+   UART0_BDH = 0x00;
    UART0_BDL = 0x07;
 
    //mode 8N1
