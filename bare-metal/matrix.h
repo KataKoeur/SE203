@@ -32,6 +32,15 @@
 #define GPIOD_PCOR  (*(volatile uint32_t *)0x400ff0c8)
 #define GPIOD_PSOR  (*(volatile uint32_t *)0x400ff0c4)
 
+
+typedef struct
+{
+   uint8_t r;
+   uint8_t g;
+   uint8_t b;
+}  rgb_color;
+
+
 void matrix_init();
 
 void SB  (int x);
