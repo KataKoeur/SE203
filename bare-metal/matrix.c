@@ -177,8 +177,10 @@ static void pulse_SCK()
 {
    SCK(0);
    asm volatile("nop"); // >25ns
+   asm volatile("nop");
    SCK(1);
    asm volatile("nop"); // >25ns
+   asm volatile("nop");
    SCK(0);
 }
 
@@ -187,6 +189,7 @@ static void pulse_LAT()
 {
    LAT(1);
    asm volatile("nop"); // >25ns
+   asm volatile("nop");
    LAT(0);
    asm volatile("nop"); // >7ns
    LAT(1);
@@ -222,9 +225,9 @@ void send_byte(uint8_t val, int bank)
    SB(bank);
 
    //envoie bit à bit sur SDA
-   for(int i=5+(2*bank); i>=0; i++)
+   for(int i=5+(2*bank); i>=0; i--)
    {
-      SDA(val & ~(1<<i));
+      SDA(val & (1<<i));
       pulse_SCK();
    }
 }
@@ -256,16 +259,14 @@ static void init_bank0()
 
 void test_pixels()
 {
-   rgb_color val[8] = {
-                        {1, 2, 3},
-                        {1, 2, 3},
-                        {1, 2, 3},
-                        {1, 2, 3},
-                        {1, 2, 3},
-                        {1, 2, 3},
-                        {1, 2, 3},
-                        {1, 2, 3}
-                      };
+   rgb_color val[8];
+   
+   for(int i=0; i<8; i++)
+   {
+      val[i].r=1;
+      val[i].g=2;
+      val[i].b=3;
+   }
    
    for(int i=0; i<8; i++)
    {
