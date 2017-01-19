@@ -263,9 +263,9 @@ void test_pixels()
    
    for(int i=0; i<8; i++)
    {
-      val[i].r=0;
-      val[i].g=0;
-      val[i].b=0;
+      val[i].r=0xff;
+      val[i].g=0xff;
+      val[i].b=0xff;
    }
    
    for(int i=0; i<8; i++)
