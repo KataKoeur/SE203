@@ -69,7 +69,7 @@ void matrix_init()
    //mode sortie
    GPIOA_PDDR |= 0x00003010;
    GPIOB_PDDR |= 0x00000007;
-   GPIOC_PDDR |= 0x00000180;
+   GPIOC_PDDR |= 0x00000300;
    GPIOD_PDDR |= 0x000000f4;
 
    //valeurs acceptables
