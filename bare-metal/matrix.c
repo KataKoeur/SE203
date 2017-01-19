@@ -8,7 +8,7 @@
 #define PORTB_PCR2  (*(volatile uint32_t *)0x4004a008)
 #define PORTC_PCR8  (*(volatile uint32_t *)0x4004b020)
 #define PORTC_PCR9  (*(volatile uint32_t *)0x4004b024)
-#define PORTA_PCR13 (*(volatile uint32_t *)0x4004b034)
+#define PORTA_PCR13 (*(volatile uint32_t *)0x40049034)
 #define PORTD_PCR2  (*(volatile uint32_t *)0x4004c008)
 #define PORTD_PCR4  (*(volatile uint32_t *)0x4004c010)
 #define PORTD_PCR6  (*(volatile uint32_t *)0x4004c018)
@@ -263,9 +263,9 @@ void test_pixels()
    
    for(int i=0; i<8; i++)
    {
-      val[i].r=1;
-      val[i].g=2;
-      val[i].b=3;
+      val[i].r=0;
+      val[i].g=0;
+      val[i].b=0;
    }
    
    for(int i=0; i<8; i++)
