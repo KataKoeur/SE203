@@ -281,3 +281,8 @@ void test_pixels()
       mat_set_row(i, val);
    }
 }
+
+void test_static_image()
+{
+   FILE* fichier = NULL;
+}

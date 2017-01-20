@@ -4,6 +4,7 @@
 #define MATRIX_H
 
 #include <stdint.h>
+#include <stdio.h>
 
 
 typedef struct
@@ -23,5 +24,6 @@ void send_byte(uint8_t val, int bank);
 void mat_set_row(int row, const rgb_color *val);
 
 void test_pixels();
+void test_static_image();
 
 #endif
