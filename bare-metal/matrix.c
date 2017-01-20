@@ -78,14 +78,7 @@ void matrix_init()
    SB  (1);
    SCK (0);
    SDA (0);
-   ROW0(0);
-   ROW1(0);
-   ROW2(0);
-   ROW3(0);
-   ROW4(0);
-   ROW5(0);
-   ROW6(0);
-   ROW7(0);
+   deactivate_rows();
    //100ms d'attente minimum
    for(int i=0; i<10000; i++) asm volatile("nop");
    RST(1);
@@ -260,16 +253,27 @@ static void init_bank0()
 void test_pixels()
 {
    rgb_color val[8];
-   
+
+   //initialisation des pixels à 0
    for(int i=0; i<8; i++)
    {
-      val[i].r=0xff;
-      val[i].g=0xff;
-      val[i].b=0xff;
+      val[i].r=0;
+      val[i].g=0;
+      val[i].b=0;
    }
-   
-   for(int i=0; i<8; i++)
-   {
-      mat_set_row(i, val);
-   }
+
+   //choix de pixels indépendants
+   val[0].r=0xff;
+   mat_set_row(0, val);
+   deactivate_rows();
+
+   val[0].r=0;
+   val[7].g=0xff;
+   mat_set_row(7, val);
+   deactivate_rows();
+
+   val[7].g=0;
+   val[0].b=0xff;
+   mat_set_row(3, val);
+   deactivate_rows();
 }
