@@ -264,16 +264,20 @@ void test_pixels()
 
    //choix de pixels indépendants
    val[0].r=0xff;
-   mat_set_row(0, val);
-   deactivate_rows();
+   val[1].r=0xf0;
+   val[2].r=0xf0;
 
-   val[0].r=0;
-   val[7].g=0xff;
-   mat_set_row(7, val);
-   deactivate_rows();
+   val[2].g=0xf0;
+   val[3].g=0xf0;
+   val[4].g=0xff;
+   val[5].g=0xf0;
+   val[6].g=0xf0;
 
-   val[7].g=0;
-   val[0].b=0xff;
-   mat_set_row(3, val);
-   deactivate_rows();
+   val[6].b=0xf0;
+   val[7].b=0xf0;
+
+   for(int i=0; i<8; i++)
+   {
+      mat_set_row(i, val);
+   }
 }

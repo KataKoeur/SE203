@@ -15,5 +15,7 @@ int main (void)
    matrix_init();
 
    //code
-   while(1) test_pixels();
+   test_pixels();
+   
+   while(1);
 }

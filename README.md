@@ -88,3 +88,9 @@ Pour vérifier cela, il suffit de lancer le programme en continu (c) sur la cart
 Il faut ensuite lancer le script python checksum.
 Enfin, il faut afficher la variable sum dans gdb afin de constater que la valeur est la même que celle retourner par le script python.
 HOURAAA!!!
+
+# Matrice de LEDs
+
+Pour brancher correctement la matrice de LEDs sur le controleur DM163, il faut veuiller à mettre le pin 1 de la matrice de LEDs sur le pin 1 BLEUE du controleur DM163.
+
+Comportement étrange remarqué: une fois toutes les lignes activées, il suffit de modifier la variable rgb_color et de l'appliquer à une seule ligne pour que toutes les autres lignes prennent en compte la modification.
