@@ -284,5 +284,4 @@ void test_pixels()
 
 void test_static_image()
 {
-   FILE* fichier = NULL;
 }
