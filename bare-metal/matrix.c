@@ -29,20 +29,21 @@
 #define GPIOD_PCOR  (*(volatile uint32_t *)0x400ff0c8)
 #define GPIOD_PSOR  (*(volatile uint32_t *)0x400ff0c4)
 
+#define SB(x)   if(x) GPIOB_PSOR = 0x00000001; else GPIOB_PCOR = 0x00000001;
+#define LAT(x)  if(x) GPIOB_PSOR = 0x00000002; else GPIOB_PCOR = 0x00000002;
+#define RST(x)  if(x) GPIOB_PSOR = 0x00000004; else GPIOB_PCOR = 0x00000004;
+#define SCK(x)  if(x) GPIOC_PSOR = 0x00000100; else GPIOC_PCOR = 0x00000100;
+#define SDA(x)  if(x) GPIOC_PSOR = 0x00000200; else GPIOC_PCOR = 0x00000200;
+#define ROW0(x) if(x) GPIOA_PSOR = 0x00002000; else GPIOA_PCOR = 0x00002000;
+#define ROW1(x) if(x) GPIOD_PSOR = 0x00000004; else GPIOD_PCOR = 0x00000004;
+#define ROW2(x) if(x) GPIOD_PSOR = 0x00000010; else GPIOD_PCOR = 0x00000010;
+#define ROW3(x) if(x) GPIOD_PSOR = 0x00000040; else GPIOD_PCOR = 0x00000040;
+#define ROW4(x) if(x) GPIOD_PSOR = 0x00000080; else GPIOD_PCOR = 0x00000080;
+#define ROW5(x) if(x) GPIOD_PSOR = 0x00000020; else GPIOD_PCOR = 0x00000020;
+#define ROW6(x) if(x) GPIOA_PSOR = 0x00001000; else GPIOA_PCOR = 0x00001000;
+#define ROW7(x) if(x) GPIOA_PSOR = 0x00000010; else GPIOA_PCOR = 0x00000010;
+
 static void init_bank0();
-static void SB  (int x);
-static void LAT (int x);
-static void RST (int x);
-static void SCK (int x);
-static void SDA (int x);
-static void ROW0(int x);
-static void ROW1(int x);
-static void ROW2(int x);
-static void ROW3(int x);
-static void ROW4(int x);
-static void ROW5(int x);
-static void ROW6(int x);
-static void ROW7(int x);
 static void pulse_SCK();
 static void pulse_LAT();
 
@@ -73,154 +74,76 @@ void matrix_init()
    GPIOD_PDDR |= 0x000000f4;
 
    //valeurs acceptables
-   RST (0);
-   LAT (1);
-   SB  (1);
-   SCK (0);
-   SDA (0);
+   RST (0)
+   LAT (1)
+   SB  (1)
+   SCK (0)
+   SDA (0)
    deactivate_rows();
    //100ms d'attente minimum
    for(int i=0; i<10000; i++) asm volatile("nop");
-   RST(1);
+   RST(1)
 
-   //initialisation du bank0  
+   //initialisation du bank0
    init_bank0();
-}
-
-static void SB(int x)
-{
-   if(x) GPIOB_PSOR = 0x00000001;
-   else  GPIOB_PCOR = 0x00000001;
-}
-
-static void LAT(int x)
-{
-   if(x) GPIOB_PSOR = 0x00000002;
-   else  GPIOB_PCOR = 0x00000002;
-}
-
-static void RST(int x)
-{
-   if(x) GPIOB_PSOR = 0x00000004;
-   else  GPIOB_PCOR = 0x00000004;
-}
-
-static void SCK(int x)
-{
-   if(x) GPIOC_PSOR = 0x00000100;
-   else  GPIOC_PCOR = 0x00000100;
-}
-
-static void SDA(int x)
-{
-   if(x) GPIOC_PSOR = 0x00000200;
-   else  GPIOC_PCOR = 0x00000200;
-}
-
-static void ROW0(int x)
-{
-   if(x) GPIOA_PSOR = 0x00002000;
-   else  GPIOA_PCOR = 0x00002000;
-}
-
-static void ROW1(int x)
-{
-   if(x) GPIOD_PSOR = 0x00000004;
-   else  GPIOD_PCOR = 0x00000004;
-}
-
-static void ROW2(int x)
-{
-   if(x) GPIOD_PSOR = 0x00000010;
-   else  GPIOD_PCOR = 0x00000010;
-}
-
-static void ROW3(int x)
-{
-   if(x) GPIOD_PSOR = 0x00000040;
-   else  GPIOD_PCOR = 0x00000040;
-}
-
-static void ROW4(int x)
-{
-   if(x) GPIOD_PSOR = 0x00000080;
-   else  GPIOD_PCOR = 0x00000080;
-}
-
-static void ROW5(int x)
-{
-   if(x) GPIOD_PSOR = 0x00000020;
-   else  GPIOD_PCOR = 0x00000020;
-}
-
-static void ROW6(int x)
-{
-   if(x) GPIOA_PSOR = 0x00001000;
-   else  GPIOA_PCOR = 0x00001000;
-}
-
-static void ROW7(int x)
-{
-   if(x) GPIOA_PSOR = 0x00000010;
-   else  GPIOA_PCOR = 0x00000010;
 }
 
 //pulsation positive
 static void pulse_SCK()
 {
-   SCK(0);
+   SCK(0)
    asm volatile("nop"); // >25ns
    asm volatile("nop");
-   SCK(1);
+   SCK(1)
    asm volatile("nop"); // >25ns
    asm volatile("nop");
-   SCK(0);
+   SCK(0)
 }
 
 //pulsation négative
 static void pulse_LAT()
 {
-   LAT(1);
+   LAT(1)
    asm volatile("nop"); // >25ns
    asm volatile("nop");
-   LAT(0);
+   LAT(0)
    asm volatile("nop"); // >7ns
-   LAT(1);
+   LAT(1)
 }
 
 void deactivate_rows()
 {
-   ROW0(0);
-   ROW1(0);
-   ROW2(0);
-   ROW3(0);
-   ROW4(0);
-   ROW5(0);
-   ROW6(0);
-   ROW7(0);
+   ROW0(0)
+   ROW1(0)
+   ROW2(0)
+   ROW3(0)
+   ROW4(0)
+   ROW5(0)
+   ROW6(0)
+   ROW7(0)
 }
 
 void activate_row(int row)
 {
-   if(row == 0)      ROW0(1);
-   else if(row == 1) ROW1(1);
-   else if(row == 2) ROW2(1);
-   else if(row == 3) ROW3(1);
-   else if(row == 4) ROW4(1);
-   else if(row == 5) ROW5(1);
-   else if(row == 6) ROW6(1);
-   else if(row == 7) ROW7(1);
+   if(row == 0)      {ROW0(1)}
+   else if(row == 1) {ROW1(1)}
+   else if(row == 2) {ROW2(1)}
+   else if(row == 3) {ROW3(1)}
+   else if(row == 4) {ROW4(1)}
+   else if(row == 5) {ROW5(1)}
+   else if(row == 6) {ROW6(1)}
+   else if(row == 7) {ROW7(1)}
 }
 
 void send_byte(uint8_t val, int bank)
 {
    //selection registre à décalage
-   SB(bank);
+   SB(bank)
 
    //envoie bit à bit sur SDA
    for(int i=5+(2*bank); i>=0; i--)
    {
-      SDA(val & (1<<i));
+      SDA(val & (1<<i))
       pulse_SCK();
    }
 }
