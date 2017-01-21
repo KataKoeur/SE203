@@ -12,7 +12,7 @@ ASFLAGS = -g -mcpu=cortex-m0plus
 LDFLAGS = -T ld_ram.lds -nostdlib
 
 EXE = main.elf
-OBJS = main.o init.o led.o uart.o matrix.o crt0.o
+OBJS = main.o init.o led.o uart.o matrix.o image.o crt0.o
 LOADLIBES = clocks.o
 
 DEPS = $(subst .o,.d,$(OBJS))
@@ -21,6 +21,9 @@ all: $(EXE)
 
 $(EXE): $(OBJS)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
+image.o: image.raw
+	$(PREFIX)objcopy -O object $^ $@
 
 -include $(DEPS)
 %.d : %.c
