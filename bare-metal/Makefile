@@ -23,7 +23,7 @@ $(EXE): $(OBJS)
 	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 image.o: image.raw
-	$(PREFIX)objcopy -O object $^ $@
+	$(PREFIX)objcopy -I binary -O elf32-littlearm -B arm $^ $@
 
 -include $(DEPS)
 %.d : %.c
