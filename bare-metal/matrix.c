@@ -210,9 +210,21 @@ void test_pixels()
 
 void test_static_image()
 {
-   char *i;
+   rgb_color val[8];
+   char *i = &_binary_image_raw_start;
+   int row = 0;
+   int led = 0;
 
-   for(i = &_binary_image_raw_start; i < &_binary_image_raw_end; i++)
+   while(i < &_binary_image_raw_end)   
    {
+      for(led = 0; led<8; led++)
+      {
+         val[led].r = *i++;
+         val[led].g = *i++;
+         val[led].b = *i++;
+      }
+      deactivate_rows();
+      mat_set_row(row, val);
+      row++;
    }
 }
