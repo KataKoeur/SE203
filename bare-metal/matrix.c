@@ -43,6 +43,9 @@
 #define ROW6(x) if(x) GPIOA_PSOR = 0x00001000; else GPIOA_PCOR = 0x00001000;
 #define ROW7(x) if(x) GPIOA_PSOR = 0x00000010; else GPIOA_PCOR = 0x00000010;
 
+extern char _binary_image_raw_start; 
+extern char _binary_image_raw_end; 
+
 static void init_bank0();
 static void pulse_SCK();
 static void pulse_LAT();
@@ -207,4 +210,9 @@ void test_pixels()
 
 void test_static_image()
 {
+   char *i;
+
+   for(i = &_binary_image_raw_start; i < &_binary_image_raw_end; i++)
+   {
+   }
 }
