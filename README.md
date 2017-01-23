@@ -94,3 +94,5 @@ HOURAAA!!!
 Pour brancher correctement la matrice de LEDs sur le controleur DM163, il faut veuiller à mettre le pin 1 de la matrice de LEDs sur le pin 1 BLEUE du controleur DM163.
 
 Comportement étrange remarqué: une fois toutes les lignes activées, il suffit de modifier la variable rgb_color et de l'appliquer à une seule ligne pour que toutes les autres lignes prennent en compte la modification.
+
+Pour la partie test_static_image, l'image obtenue est en mirroire de l'image du TP. Je dois donc afficher les lignes dans l'ordre inverse pour obtenir l'image à l'identique.

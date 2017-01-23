@@ -212,7 +212,7 @@ void test_static_image()
 {
    rgb_color val[8];
    char *i = &_binary_image_raw_start;
-   int row = 0;
+   int row = 7;
    int led = 0;
 
    while(i < &_binary_image_raw_end)   
@@ -223,8 +223,9 @@ void test_static_image()
          val[led].g = *i++;
          val[led].b = *i++;
       }
+      asm volatile("nop");
       deactivate_rows();
       mat_set_row(row, val);
-      row++;
+      row--;
    }
 }
