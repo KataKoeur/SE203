@@ -29,19 +29,19 @@
 #define GPIOD_PCOR  (*(volatile uint32_t *)0x400ff0c8)
 #define GPIOD_PSOR  (*(volatile uint32_t *)0x400ff0c4)
 
-#define SB(x)   if(x) GPIOB_PSOR = 0x00000001; else GPIOB_PCOR = 0x00000001;
-#define LAT(x)  if(x) GPIOB_PSOR = 0x00000002; else GPIOB_PCOR = 0x00000002;
-#define RST(x)  if(x) GPIOB_PSOR = 0x00000004; else GPIOB_PCOR = 0x00000004;
-#define SCK(x)  if(x) GPIOC_PSOR = 0x00000100; else GPIOC_PCOR = 0x00000100;
-#define SDA(x)  if(x) GPIOC_PSOR = 0x00000200; else GPIOC_PCOR = 0x00000200;
-#define ROW0(x) if(x) GPIOA_PSOR = 0x00002000; else GPIOA_PCOR = 0x00002000;
-#define ROW1(x) if(x) GPIOD_PSOR = 0x00000004; else GPIOD_PCOR = 0x00000004;
-#define ROW2(x) if(x) GPIOD_PSOR = 0x00000010; else GPIOD_PCOR = 0x00000010;
-#define ROW3(x) if(x) GPIOD_PSOR = 0x00000040; else GPIOD_PCOR = 0x00000040;
-#define ROW4(x) if(x) GPIOD_PSOR = 0x00000080; else GPIOD_PCOR = 0x00000080;
-#define ROW5(x) if(x) GPIOD_PSOR = 0x00000020; else GPIOD_PCOR = 0x00000020;
-#define ROW6(x) if(x) GPIOA_PSOR = 0x00001000; else GPIOA_PCOR = 0x00001000;
-#define ROW7(x) if(x) GPIOA_PSOR = 0x00000010; else GPIOA_PCOR = 0x00000010;
+#define SB(x)   {if(x) GPIOB_PSOR = 0x00000001; else GPIOB_PCOR = 0x00000001;}
+#define LAT(x)  {if(x) GPIOB_PSOR = 0x00000002; else GPIOB_PCOR = 0x00000002;}
+#define RST(x)  {if(x) GPIOB_PSOR = 0x00000004; else GPIOB_PCOR = 0x00000004;}
+#define SCK(x)  {if(x) GPIOC_PSOR = 0x00000100; else GPIOC_PCOR = 0x00000100;}
+#define SDA(x)  {if(x) GPIOC_PSOR = 0x00000200; else GPIOC_PCOR = 0x00000200;}
+#define ROW0(x) {if(x) GPIOA_PSOR = 0x00002000; else GPIOA_PCOR = 0x00002000;}
+#define ROW1(x) {if(x) GPIOD_PSOR = 0x00000004; else GPIOD_PCOR = 0x00000004;}
+#define ROW2(x) {if(x) GPIOD_PSOR = 0x00000010; else GPIOD_PCOR = 0x00000010;}
+#define ROW3(x) {if(x) GPIOD_PSOR = 0x00000040; else GPIOD_PCOR = 0x00000040;}
+#define ROW4(x) {if(x) GPIOD_PSOR = 0x00000080; else GPIOD_PCOR = 0x00000080;}
+#define ROW5(x) {if(x) GPIOD_PSOR = 0x00000020; else GPIOD_PCOR = 0x00000020;}
+#define ROW6(x) {if(x) GPIOA_PSOR = 0x00001000; else GPIOA_PCOR = 0x00001000;}
+#define ROW7(x) {if(x) GPIOA_PSOR = 0x00000010; else GPIOA_PCOR = 0x00000010;}
 
 extern char _binary_image_raw_start; 
 extern char _binary_image_raw_end; 
@@ -128,14 +128,14 @@ void deactivate_rows()
 
 void activate_row(int row)
 {
-   if(row == 0)      {ROW0(1)}
-   else if(row == 1) {ROW1(1)}
-   else if(row == 2) {ROW2(1)}
-   else if(row == 3) {ROW3(1)}
-   else if(row == 4) {ROW4(1)}
-   else if(row == 5) {ROW5(1)}
-   else if(row == 6) {ROW6(1)}
-   else if(row == 7) {ROW7(1)}
+   if(row == 0)      ROW0(1)
+   else if(row == 1) ROW1(1)
+   else if(row == 2) ROW2(1)
+   else if(row == 3) ROW3(1)
+   else if(row == 4) ROW4(1)
+   else if(row == 5) ROW5(1)
+   else if(row == 6) ROW6(1)
+   else if(row == 7) ROW7(1)
 }
 
 void send_byte(uint8_t val, int bank)
@@ -223,7 +223,8 @@ void test_static_image()
          val[led].g = *i++;
          val[led].b = *i++;
       }
-      asm volatile("nop");
+      //attente pour eviter le clignotement des LEDs
+      for(int i=0; i<5000; i++) asm volatile("nop");
       deactivate_rows();
       mat_set_row(row, val);
       row--;
