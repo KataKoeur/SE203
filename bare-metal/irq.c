@@ -2,7 +2,9 @@
 
 #include "irq.h"
 
-#define VTOR (*(volatile uint32_t *)0xE000ED08)
+#define VTOR      (*(volatile uint32_t *)0xE000ED08)
+#define NVIC_ISER (*(volatile uint32_t *)0xE000E100)
+#define NVIC_ICER (*(volatile uint32_t *)0xE000E180)
 
 #define MAKE_DEFAULT_HANDLER(x) void __attribute__((weak)) x(void) {disable_irq() while(1);}
 
@@ -107,4 +109,14 @@ void *vector_table[] =
 void irq_init(void)
 {
    VTOR = (uint32_t) vector_table;
+}
+
+void irq_enable(int irq_number)
+{
+   NVIC_ISER = 1 << irq_number;
+}
+
+void irq_disable(int irq_number)
+{
+   NVIC_ICER = 1 << irq_number;
 }
