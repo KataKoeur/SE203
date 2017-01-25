@@ -55,5 +55,5 @@ void *vector_table[] =
    LPTMR0_IRQHandler,  /* - */
    SLCD_IRQHandler,    /* - */
    PORTA_IRQHandler,   /* Pin detect (Port A) */
-   PORTCD_IRQHandler,  /* Pin detect (Single interrupt vector for Port C and Port D) */
+   PORTCD_IRQHandler   /* Pin detect (Single interrupt vector for Port C and Port D) */
 };
