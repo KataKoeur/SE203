@@ -101,3 +101,8 @@ void *vector_table[] =
    PORTA_IRQHandler,   /* Pin detect (Port A) */
    PORTCD_IRQHandler   /* Pin detect (Single interrupt vector for Port C and Port D) */
 };
+
+void irq_init(void)
+{
+
+}
