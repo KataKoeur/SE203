@@ -96,3 +96,11 @@ Pour brancher correctement la matrice de LEDs sur le controleur DM163, il faut v
 Comportement étrange remarqué: une fois toutes les lignes activées, il suffit de modifier la variable rgb_color et de l'appliquer à une seule ligne pour que toutes les autres lignes prennent en compte la modification.
 
 Pour la partie test_static_image, l'image obtenue est en mirroire de l'image du TP. Je dois donc afficher les lignes dans l'ordre inverse pour obtenir l'image à l'identique.
+
+# IRQ
+
+Il faut faire pointer VTOR sur notre table de vecteur pour redéfinir nos propres handlers.
+Il faut cependant désactiver les interruptions de la NMI qui a une trop grande priorité par rapport aux autre interruptions.
+Pour cela, nous vérifions que les octets suivants sont bien réécrits dans la section flash_config;
+
+ffffffff ffffffff ffffffff fefbffff
