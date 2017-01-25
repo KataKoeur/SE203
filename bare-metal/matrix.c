@@ -169,8 +169,10 @@ void mat_set_row(int row, const rgb_color *val)
 
 static void init_bank0()
 {
-   for(int i=0; i<6; i++)
+   for(int i=0; i<8; i++)
    {
+      send_byte(0xff,0);
+      send_byte(0xff,0);
       send_byte(0xff,0);
    }
    pulse_LAT();
@@ -180,33 +182,47 @@ void test_pixels()
 {
    rgb_color val[8];
 
-   //initialisation des pixels à 0
+   //dégradé de rouge
    for(int i=0; i<8; i++)
    {
-      val[i].r=0;
-      val[i].g=0;
-      val[i].b=0;
+      val[i].r = 255 >> i;
+      val[i].g = 0;
+      val[i].b = 0;
    }
 
-   //choix de pixels indépendants
-   val[0].r=0xff;
-   val[1].r=0xf0;
-   val[2].r=0xf0;
-
-   val[2].g=0xf0;
-   val[3].g=0xf0;
-   val[4].g=0xff;
-   val[5].g=0xf0;
-   val[6].g=0xf0;
-
-   val[6].b=0xf0;
-   val[7].b=0xf0;
-
+   deactivate_rows();
+   mat_set_row(0, val);
+   mat_set_row(1, val);
+   mat_set_row(2, val);
+   for(int i=0; i<5000; i++) asm volatile("nop");
+   
+   //dégradé de vert
    for(int i=0; i<8; i++)
    {
-      mat_set_row(i, val);
+      val[i].r = 0;
+      val[i].g = 255 >> i;
+      val[i].b = 0;
    }
-}
+
+   deactivate_rows();
+   mat_set_row(3, val);
+   mat_set_row(4, val);
+   mat_set_row(5, val);
+   for(int i=0; i<5000; i++) asm volatile("nop");
+
+   //dégradé de bleu
+   for(int i=0; i<8; i++)
+   {
+      val[i].r = 0;
+      val[i].g = 0;
+      val[i].b = 255 >> i;
+   }
+
+   deactivate_rows();
+   mat_set_row(6, val);
+   mat_set_row(7, val);
+   for(int i=0; i<5000; i++) asm volatile("nop");
+}   
 
 void test_static_image()
 {
