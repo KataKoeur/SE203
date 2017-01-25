@@ -13,4 +13,3 @@ void irq_enable(int irq_number);
 void irq_disable(int irq_number);
 
 #endif
-

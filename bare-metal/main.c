@@ -3,6 +3,7 @@
 #include "led.h"
 #include "uart.h"
 #include "matrix.h"
+#include "irq.h"
 
 void clocks_init();
 
@@ -13,6 +14,7 @@ int main (void)
    led_init();
    uart_init();
    matrix_init();
+   irq_init();
 
    //code
    while(1) test_static_image();
