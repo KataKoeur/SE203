@@ -1,6 +1,8 @@
 //irq.c
 
-#define MAKE_DEFAULT_HANDLER(x) {void __attribute__((weak)) x(void) {disable_irq(); while(1);}}
+#include "irq.h"
+
+#define MAKE_DEFAULT_HANDLER(x) void __attribute__((weak)) x(void) {disable_irq() while(1);}
 
 MAKE_DEFAULT_HANDLER (NMI_Handler)
 MAKE_DEFAULT_HANDLER (HardFault_Handler)
@@ -30,7 +32,7 @@ MAKE_DEFAULT_HANDLER (RTC0_IRQHandler)
 MAKE_DEFAULT_HANDLER (RTC1_IRQHandler)
 MAKE_DEFAULT_HANDLER (PIT_IRQHandler)
 MAKE_DEFAULT_HANDLER (I2S0_IRQHandler)
-MAKE_DEFAULT_HANDLER (USB OTG_IRQHandler)
+MAKE_DEFAULT_HANDLER (USB_OTG_IRQHandler)
 MAKE_DEFAULT_HANDLER (DAC0_IRQHandler)
 MAKE_DEFAULT_HANDLER (TSI0_IRQHandler)
 MAKE_DEFAULT_HANDLER (MCG_IRQHandler)
@@ -38,6 +40,9 @@ MAKE_DEFAULT_HANDLER (LPTMR0_IRQHandler)
 MAKE_DEFAULT_HANDLER (SLCD_IRQHandler)
 MAKE_DEFAULT_HANDLER (PORTA_IRQHandler)
 MAKE_DEFAULT_HANDLER (PORTCD_IRQHandler)
+
+extern char _stack;
+extern char _start();
 
 void *vector_table[] = 
 {
@@ -87,7 +92,7 @@ void *vector_table[] =
    RTC1_IRQHandler,    /* Seconds interrupt */
    PIT_IRQHandler,     /* Single interrupt vector for all channels */
    I2S0_IRQHandler,    /* Single interrupt vector for all sources */
-   USB OTG_IRQHandler, /* - */
+   USB_OTG_IRQHandler, /* - */
    DAC0_IRQHandler,    /* - */
    TSI0_IRQHandler,    /* - */
    MCG_IRQHandler,     /* - */
