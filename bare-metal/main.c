@@ -6,6 +6,7 @@
 #include "irq.h"
 
 void clocks_init();
+void button_init();
 
 int main (void)
 {
@@ -15,6 +16,7 @@ int main (void)
    uart_init();
    matrix_init();
    irq_init();
+   button_init();
 
    //code
    while(1) test_static_image();

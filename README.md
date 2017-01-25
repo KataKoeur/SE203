@@ -104,3 +104,8 @@ Il faut cependant désactiver les interruptions de la NMI qui a une trop grande 
 Pour cela, nous vérifions que les octets suivants sont bien réécrits dans la section flash_config;
 
 ffffffff ffffffff ffffffff fefbffff
+
+Pour pouvoir déclencher une interruption, il faut aligner la table des vecteurs avec une adresse contenant 7 zéros en bit de poids faible.
+Cela est indispensable car les 7 premiers bits de VTOR sont réservés. Pour cela on ajoute à notre table des vecteurs:
+
+__attribute__((aligned(256)))

@@ -48,7 +48,7 @@ MAKE_DEFAULT_HANDLER (PORTCD_IRQHandler)
 extern char _stack;
 extern char _start();
 
-void *vector_table[] = 
+void *vector_table[] __attribute__((aligned(256))) = 
 {
    // Stack and Reset Handler
    &_stack,            /* Top of stack */
