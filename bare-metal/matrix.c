@@ -143,8 +143,10 @@ void send_byte(uint8_t val, int bank)
    //selection registre à décalage
    SB(bank)
 
+   int pix_bits = bank? 8 : 6;
+
    //envoie bit à bit sur SDA
-   for(int i=5+(2*bank); i>=0; i--)
+   for(int i=pix_bits-1; i>=0; i--)
    {
       SDA(val & (1<<i))
       pulse_SCK();
