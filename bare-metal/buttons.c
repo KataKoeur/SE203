@@ -1,5 +1,6 @@
 //buttons.c
 
+#include "led.h"
 #include "irq.h"
 
 #define SIM_SCGC5  (*(volatile uint32_t *)0x40048038)
@@ -20,3 +21,12 @@ void button_init(void)
    //activation interrupttion port C
    irq_enable(31);
 }
+
+void PORTCD_IRQHandler(void)
+{
+   disable_irq() 
+   led_r_toggle();
+   PORTC_PCR3 |= 0x01000000; //flag
+   enable_irq()
+}
+
