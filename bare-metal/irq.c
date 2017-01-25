@@ -2,6 +2,8 @@
 
 #include "irq.h"
 
+#define VTOR (*(volatile uint32_t *)0xE000ED08)
+
 #define MAKE_DEFAULT_HANDLER(x) void __attribute__((weak)) x(void) {disable_irq() while(1);}
 
 MAKE_DEFAULT_HANDLER (NMI_Handler)
@@ -104,5 +106,5 @@ void *vector_table[] =
 
 void irq_init(void)
 {
-
+   VTOR = (uint32_t) vector_table;
 }
