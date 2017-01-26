@@ -12,12 +12,12 @@ int main (void)
 {
    //initialisation
    clocks_init();
+   irq_init();
    led_init();
    uart_init();
    matrix_init();
-   irq_init();
    button_init();
 
    //code
-   while(1) display_screen();
+   while(1) test_static_image();
 }

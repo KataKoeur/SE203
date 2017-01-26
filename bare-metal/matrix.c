@@ -157,18 +157,24 @@ void send_byte(uint8_t val, int bank)
 
 void mat_set_row(int row, const rgb_color *val)
 {
-   //activation d'une colonne
+   //activation LED par LED
    for(int i=0; i<8; i++)
    {
-      send_byte(val->b, 1);
-      send_byte(val->g, 1);
-      send_byte(val->r, 1);
-      val++;
+      send_byte(val[i].b, 1);
+      send_byte(val[i].g, 1);
+      send_byte(val[i].r, 1);
    }
+
+   //désactivation de toutes les lignes
+   deactivate_rows();
+
+   //attente pour eviter le clignotement des LEDs
+   for(int i=0; i<500; i++) asm volatile("nop");
+
+   pulse_LAT();
 
    //activation d'une ligne
    activate_row(row);
-   pulse_LAT();
 }
 
 static void init_bank0()
@@ -194,11 +200,9 @@ void test_pixels()
       val[i].b = 0;
    }
 
-   deactivate_rows();
    mat_set_row(0, val);
    mat_set_row(1, val);
    mat_set_row(2, val);
-   for(int i=0; i<5000; i++) asm volatile("nop");
    
    //dégradé de vert
    for(int i=0; i<8; i++)
@@ -208,11 +212,9 @@ void test_pixels()
       val[i].b = 0;
    }
 
-   deactivate_rows();
    mat_set_row(3, val);
    mat_set_row(4, val);
    mat_set_row(5, val);
-   for(int i=0; i<5000; i++) asm volatile("nop");
 
    //dégradé de bleu
    for(int i=0; i<8; i++)
@@ -222,10 +224,8 @@ void test_pixels()
       val[i].b = 255 >> i;
    }
 
-   deactivate_rows();
    mat_set_row(6, val);
    mat_set_row(7, val);
-   for(int i=0; i<5000; i++) asm volatile("nop");
 }   
 
 void test_static_image()
@@ -243,9 +243,6 @@ void test_static_image()
          val[led].g = *i++;
          val[led].b = *i++;
       }
-      //attente pour eviter le clignotement des LEDs
-      for(int i=0; i<5000; i++) asm volatile("nop");
-      deactivate_rows();
       mat_set_row(row, val);
       row--;
    }
