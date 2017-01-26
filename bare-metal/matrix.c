@@ -160,9 +160,9 @@ void mat_set_row(int row, const rgb_color *val)
    //activation LED par LED
    for(int i=0; i<8; i++)
    {
-      send_byte(val[i].b, 1);
-      send_byte(val[i].g, 1);
-      send_byte(val[i].r, 1);
+      send_byte(val[7-i].b, 1);
+      send_byte(val[7-i].g, 1);
+      send_byte(val[7-i].r, 1);
    }
 
    //désactivation de toutes les lignes
@@ -232,7 +232,7 @@ void test_static_image()
 {
    rgb_color val[8];
    char *i = &_binary_image_raw_start;
-   int row = 7;
+   int row = 0;
    int led = 0;
 
    while(i < &_binary_image_raw_end)   
@@ -244,7 +244,7 @@ void test_static_image()
          val[led].b = *i++;
       }
       mat_set_row(row, val);
-      row--;
+      row++;
    }
 }
 
