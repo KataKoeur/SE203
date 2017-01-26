@@ -112,3 +112,10 @@ __attribute__((aligned(256)))
 
 L'interruption du bouton SW1 appelle le handler PORTA_IRQHandler au lieu du handler PORTCD_IRQHandler... malgré l'activation du bit 31eme handler.
 Le problème est maintenant résolue, il y a avait un élément en trop dans la table des vecteurs.
+
+# UART + IRQ + LED !
+
+On souhaite avoir un oversampling de 38400.
+On calcul donc les valeurs suivantes:
+
+- OSR = 24 et SBR = 25
