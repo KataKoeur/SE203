@@ -5,6 +5,7 @@
 #include "matrix.h"
 #include "irq.h"
 #include "buttons.h"
+#include "pit.h"
 
 void clocks_init();
 
@@ -17,6 +18,7 @@ int main (void)
    uart_init();
    matrix_init();
    button_init();
+   pit_init();
 
    //code
    while(1) display_screen();

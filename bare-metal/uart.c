@@ -1,8 +1,6 @@
 //uart.c
 
 #include "uart.h"
-#include "irq.h"
-#include "matrix.h"
 
 #define SIM_SOPT2  (*(volatile uint32_t *)0x40048004)
 #define SIM_SCGC4  (*(volatile uint32_t *)0x40048034)
