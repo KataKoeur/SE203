@@ -22,11 +22,10 @@ void button_init(void)
    irq_enable(31);
 }
 
-void PORTCD_IRQHandler(void)
+void PORTA_IRQHandler(void)
 {
    disable_irq() 
    led_r_toggle();
    PORTC_PCR3 |= 0x01000000; //flag
    enable_irq()
 }
-

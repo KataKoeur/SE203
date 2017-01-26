@@ -109,3 +109,5 @@ Pour pouvoir déclencher une interruption, il faut aligner la table des vecteurs
 Cela est indispensable car les 7 premiers bits de VTOR sont réservés. Pour cela on ajoute à notre table des vecteurs:
 
 __attribute__((aligned(256)))
+
+L'interruption du bouton SW1 appelle le handler PORTA_IRQHandler au lieu du handler PORTCD_IRQHandler... malgré l'activation du bit 31eme handler.
