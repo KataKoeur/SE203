@@ -1,13 +1,12 @@
 //buttons.c
 
-#include "led.h"
-#include "irq.h"
+#include "buttons.h"
 
 #define SIM_SCGC5  (*(volatile uint32_t *)0x40048038)
 #define PORTC_PCR3 (*(volatile uint32_t *)0x4004b00c)
 #define GPIOC_PDDR (*(volatile uint32_t *)0x400ff094)
 
-void button_init(void)
+void button_init()
 {
    //activation horloge port C
    SIM_SCGC5 |= 0x00000800;

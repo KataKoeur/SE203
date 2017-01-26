@@ -5,6 +5,9 @@
 
 #include <stdint.h>
 
+#include "irq.h"
+#include "matrix.h"
+
 void          uart_init();
 void          uart_putchar(char c);
 unsigned char uart_getchar();

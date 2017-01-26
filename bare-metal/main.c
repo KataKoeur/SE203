@@ -4,9 +4,9 @@
 #include "uart.h"
 #include "matrix.h"
 #include "irq.h"
+#include "buttons.h"
 
 void clocks_init();
-void button_init();
 
 int main (void)
 {
