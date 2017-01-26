@@ -93,7 +93,7 @@ HOURAAA!!!
 
 Pour brancher correctement la matrice de LEDs sur le controleur DM163, il faut veuiller à mettre le pin 1 de la matrice de LEDs sur le pin 1 BLEUE du controleur DM163.
 
-Comportement étrange remarqué: une fois toutes les lignes activées, il suffit de modifier la variable rgb_color et de l'appliquer à une seule ligne pour que toutes les autres lignes prennent en compte la modification.
+Remarque: une fois toutes les lignes activées, il suffit de modifier la variable rgb_color et de l'appliquer à une seule ligne pour que toutes les autres lignes prennent en compte la modification.
 
 Pour la partie test_static_image, l'image obtenue est en mirroire de l'image du TP. Je dois donc afficher les lignes dans l'ordre inverse pour obtenir l'image à l'identique.
 
@@ -111,11 +111,18 @@ Cela est indispensable car les 7 premiers bits de VTOR sont réservés. Pour cel
 __attribute__((aligned(256)))
 
 L'interruption du bouton SW1 appelle le handler PORTA_IRQHandler au lieu du handler PORTCD_IRQHandler... malgré l'activation du bit 31eme handler.
-Le problème est maintenant résolue, il y a avait un élément en trop dans la table des vecteurs.
+Le problème est maintenant résolu, il y avait un élément en trop dans la table des vecteurs.
 
 # UART + IRQ + LED !
 
 On souhaite avoir un oversampling de 38400.
-On calcul donc les valeurs suivantes:
+On calcule donc les valeurs suivantes:
 
 - OSR = 24 et SBR = 25
+
+La lecture des 3 fichiers se fait sans problème avec la commande cat one_frame.bin > /dev/ttyACM0:
+
+- many_frames.bin = Hello World !
+- final.bin       = Bravo ! La suite est sur http://sen.enst.fr/cc2
+
+J'ai toutefois remarqué que certaine LED change d'état après un certain temps allumé. Cela est sûrement dû au fait que la carte recois du bruis sur le port série et cela se traduit en une modification de l'objet global qui est ensuite affiché sur la matrice.
