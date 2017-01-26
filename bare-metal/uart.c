@@ -2,6 +2,7 @@
 
 #include "uart.h"
 #include "irq.h"
+#include "matrix.h"
 
 #define SIM_SOPT2  (*(volatile uint32_t *)0x40048004)
 #define SIM_SCGC4  (*(volatile uint32_t *)0x40048034)
@@ -15,6 +16,8 @@
 #define UART0_BDL  (*(volatile uint8_t  *)0x4006a001)
 #define PORTA_PCR1 (*(volatile uint32_t *)0x40049004)
 #define PORTA_PCR2 (*(volatile uint32_t *)0x40049008)
+
+extern rgb_color screen[64];
 
 void uart_init()
 {
