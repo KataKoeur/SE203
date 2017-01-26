@@ -22,7 +22,7 @@ void button_init(void)
    irq_enable(31);
 }
 
-void PORTA_IRQHandler(void)
+void PORTCD_IRQHandler(void)
 {
    disable_irq() 
    led_r_toggle();

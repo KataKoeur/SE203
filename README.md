@@ -111,3 +111,4 @@ Cela est indispensable car les 7 premiers bits de VTOR sont réservés. Pour cel
 __attribute__((aligned(256)))
 
 L'interruption du bouton SW1 appelle le handler PORTA_IRQHandler au lieu du handler PORTCD_IRQHandler... malgré l'activation du bit 31eme handler.
+Le problème est maintenant résolue, il y a avait un élément en trop dans la table des vecteurs.

@@ -81,7 +81,6 @@ void *vector_table[] __attribute__((aligned(256))) =
    LLWU_IRQHandler,    /* Low Leakage Wakeup */
    I2C0_IRQHandler,    /* - */
    I2C1_IRQHandler,    /* - */
-   0,                  /* Reserved */
    SPI0_IRQHandler,    /* Single interrupt vector for all sources */
    SPI1_IRQHandler,    /* Single interrupt vector for all sources */
    UART0_IRQHandler,   /* Status and error */
