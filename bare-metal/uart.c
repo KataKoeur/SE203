@@ -1,6 +1,7 @@
 //uart.c
 
 #include "uart.h"
+#include "irq.h"
 
 #define SIM_SOPT2  (*(volatile uint32_t *)0x40048004)
 #define SIM_SCGC4  (*(volatile uint32_t *)0x40048034)
@@ -22,11 +23,11 @@ void uart_init()
    SIM_SCGC4 |= 0x00000400;
 
    //config oversampling
-   //OSR = 28
-   UART0_C4 = 0x1c;
-   //SBR = 7
+   //OSR = 24
+   UART0_C4 = 0x18;
+   //SBR = 25
    UART0_BDH = 0x00;
-   UART0_BDL = 0x07;
+   UART0_BDL = 0x19;
 
    //mode 8N1
    UART0_C1 = 0x00;
@@ -73,4 +74,10 @@ void uart_gets(char *s, int size)
       *s = uart_getchar();
       s++;
    }
+}
+
+void UART0_IRQHandler()
+{
+   disable_irq() 
+   enable_irq()
 }
