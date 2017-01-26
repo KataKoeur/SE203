@@ -250,3 +250,14 @@ void test_static_image()
       row--;
    }
 }
+
+void display_screen()
+{
+   for(int row=0; row<8; row++)
+   {
+      //attente pour eviter le clignotement des LEDs
+      for(int i=0; i<5000; i++) asm volatile("nop");
+      deactivate_rows();
+      mat_set_row(row, screen+(row*8));
+   }
+}

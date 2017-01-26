@@ -19,5 +19,5 @@ int main (void)
    button_init();
 
    //code
-   while(1) test_static_image();
+   while(1) display_screen();
 }
