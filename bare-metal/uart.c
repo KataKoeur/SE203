@@ -9,9 +9,9 @@
 #define SIM_SCGC5  (*(volatile uint32_t *)0x40048038)
 #define UART0_C1   (*(volatile uint8_t  *)0x4006a002)
 #define UART0_C2   (*(volatile uint8_t  *)0x4006a003)
+#define UART0_C4   (*(volatile uint8_t  *)0x4006a00a)
 #define UART0_S1   (*(volatile uint8_t  *)0x4006a004)
 #define UART0_D    (*(volatile uint8_t  *)0x4006a007)
-#define UART0_C4   (*(volatile uint8_t  *)0x4006a00a)
 #define UART0_BDH  (*(volatile uint8_t  *)0x4006a000)
 #define UART0_BDL  (*(volatile uint8_t  *)0x4006a001)
 #define PORTA_PCR1 (*(volatile uint32_t *)0x40049004)
@@ -35,6 +35,10 @@ void uart_init()
    //mode 8N1
    UART0_C1 = 0x00;
 
+   //activation interruption UART0
+   UART0_C2 = 0x20;
+   irq_enable(12);
+
    //broche RX et TX du portA en mode UART0
    SIM_SCGC5 |= 0x00000200;
    //RX
@@ -42,11 +46,8 @@ void uart_init()
    //TX 
    PORTA_PCR2 = (PORTA_PCR2 | 0x00000200) & ~0x00000500;
 
-   //activation interrupttion UART0
-   irq_enable(12);
-
    //activation transmetteur récepteur
-   UART0_C2 = 0x0c;
+   UART0_C2 = 0x2c;
 }
 
 void uart_putchar(char c)
@@ -84,7 +85,6 @@ void uart_gets(char *s, int size)
 
 void UART0_IRQHandler()
 {
-   disable_irq()
    char pix = uart_getchar();
    static int ptr_color  = 0;
    static int ptr_screen = 0;
@@ -99,5 +99,4 @@ void UART0_IRQHandler()
       if(ptr_color  == 3) {ptr_color  = 0; ptr_screen++;}
       if(ptr_screen == 64) ptr_screen = 0;
    }
-   enable_irq()
 }
