@@ -88,8 +88,26 @@ void UART0_IRQHandler()
    char pix = uart_getchar();
    static int ptr_color  = 0;
    static int ptr_screen = 0;
-   
-   if(pix != 0xff)
+
+   //OR
+   if(UART0_S1 & 1<<3)
+   {
+      UART0_S1 = (1<<3);
+   }
+
+   //FE
+   else if(UART0_S1 & 1<<1) 
+   {
+      UART0_S1 = (1<<1);
+   }
+
+   else if(pix == 0xff)
+   {
+      ptr_color  = 0;
+      ptr_screen = 0;
+   }
+
+   else
    {
       if(ptr_color == 0)      screen[ptr_screen].r = pix;
       else if(ptr_color == 1) screen[ptr_screen].g = pix;
@@ -98,10 +116,5 @@ void UART0_IRQHandler()
       ptr_color++;
       if(ptr_color  == 3) {ptr_color  = 0; ptr_screen++;}
       if(ptr_screen == 64) ptr_screen = 0;
-   }
-   else
-   {
-      ptr_color  = 0;
-      ptr_screen = 0;
    }
 }
