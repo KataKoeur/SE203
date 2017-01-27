@@ -7,6 +7,7 @@
 
 #include "irq.h"
 #include "led.h"
+#include "matrix.h"
 
 void pit_init();
 

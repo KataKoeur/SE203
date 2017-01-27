@@ -31,7 +31,7 @@ Il faut penser à ajouter la ligne "set auto-load safe-path /" dans le son .gdbi
 
 ## Création d'un executable
 
-Création d'un linker script charger de réaliser le mapping mémoire.
+Création d'un linker script chargé de réaliser le mapping mémoire.
 On place tout le code dans la zone mémoire RAMH (0x20000000).
 Pour vérifier que notre programme est logé au bon endroit, il faut compiler le programme en 2 temps (les objets puis l'exécutable) pour ensuite faire un objdump -h. Penser à ajouter le flag -nostdlib lors de l'édition de liens.
 
@@ -126,3 +126,13 @@ La lecture des 3 fichiers se fait sans problème avec la commande cat one_frame.
 - final.bin       = Bravo ! La suite est sur http://sen.enst.fr/cc2
 
 J'ai toutefois remarqué que certaine LED change d'état après un certain temps allumé. Cela est sûrement dû au fait que la carte recois du bruis sur le port série et cela se traduit en une modification de l'objet global qui est ensuite affiché sur la matrice.
+
+# Timers
+
+Le PIT fonctionne correctement, on obtient différentes fréquences d'intérruptions avec les valeurs suivantes dans le registre PIT_LDVAL0:
+
+freq = 1Hz,   reg = 0x016e3600
+freq = 70Hz,  reg = 0x00053b49
+freq = 500Hz, reg = 0x0000bb80
+
+Je trouve que la fréquence de 70Hz n'est pas suffisante pour afficher correctement les animations sur la matrices de LED.

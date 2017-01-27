@@ -21,5 +21,5 @@ int main (void)
    pit_init();
 
    //code
-   while(1) display_screen();
+   while(1);
 }
