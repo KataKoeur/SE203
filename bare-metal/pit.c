@@ -27,7 +27,6 @@ void pit_init()
 
 void PIT_IRQHandler()
 {
-   led_r_toggle();
    display_screen();
    //abaissement du flag
    PIT_TFLG0 = 0x00000001;

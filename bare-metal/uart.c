@@ -83,6 +83,11 @@ void uart_gets(char *s, int size)
 
 void UART0_IRQHandler()
 {
+   //désactivation des interruptions
+   //pour ne pas pertuber la lecture
+   //du port série
+   disable_irq()
+
    char pix = uart_getchar();
    static int ptr_color  = 0;
    static int ptr_screen = 0;
@@ -115,4 +120,5 @@ void UART0_IRQHandler()
       if(ptr_color  == 3) {ptr_color  = 0; ptr_screen++;}
       if(ptr_screen == 64) ptr_screen = 0;
    }
+   enable_irq()
 }
