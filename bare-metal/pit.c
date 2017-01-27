@@ -19,6 +19,7 @@ void pit_init()
    PIT_TFLG0 = 0x00000001;
 
    //activation timer et interruption
+   irq_enable(22);
    PIT_TCTRL0 = 0x00000003;
 }
 
