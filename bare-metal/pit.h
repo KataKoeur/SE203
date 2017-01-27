@@ -5,6 +5,9 @@
 
 #include <stdint.h>
 
+#include "irq.h"
+#include "led.h"
+
 void pit_init();
 
 #endif

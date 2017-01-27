@@ -21,3 +21,11 @@ void pit_init()
    //activation timer et interruption
    PIT_TCTRL0 = 0x00000003;
 }
+
+void PIT_IRQHandler()
+{
+   led_r_toggle();
+   
+   //abaissement du flag
+   PIT_TFLG0 = 0x00000001;
+}
