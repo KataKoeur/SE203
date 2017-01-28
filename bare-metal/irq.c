@@ -110,10 +110,6 @@ void *vector_table[] __attribute__((aligned(256))) =
 void irq_init(void)
 {
    VTOR = (uint32_t) vector_table;
-
-   //priorités
-   NVIC_IPR3 = 0x00000000; //UART0
-   NVIC_IPR5 = 0x00ff0000; //PIT
 }
 
 void irq_enable(int irq_number)
