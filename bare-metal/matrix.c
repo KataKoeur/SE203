@@ -169,7 +169,7 @@ void mat_set_row(int row, const rgb_color *val)
    deactivate_rows();
 
    //attente pour eviter le clignotement des LEDs
-   for(int i=0; i<500; i++) asm volatile("nop");
+   for(int i=0; i<5000; i++) asm volatile("nop");
 
    pulse_LAT();
 

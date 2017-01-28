@@ -135,4 +135,7 @@ freq = 1Hz,   reg = 0x016e3600
 freq = 70Hz,  reg = 0x00053b49
 freq = 500Hz, reg = 0x0000bb80
 
-Je trouve que la fréquence de 70Hz n'est pas suffisante pour afficher correctement les animations sur la matrices de LED.
+Je trouve que la fréquence de 70Hz n'est pas suffisante pour afficher correctement les animations sur la matrice de LED.
+Cela n'est pourtant pas de sens puisque 24 images par seconde devraient amplement suffire. Avec 70 images par seconde, on est bien au-dessus de la limite.
+J'ai constaté avec cutecom que certains octets ne sont pas lus par l'Uart, ce qui décale tout !
+Il faudrait prioriser les interruptions de l'Uart sur ceux du PIT.
