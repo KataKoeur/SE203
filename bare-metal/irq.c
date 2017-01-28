@@ -5,6 +5,8 @@
 #define VTOR      (*(volatile uint32_t *)0xE000ED08)
 #define NVIC_ISER (*(volatile uint32_t *)0xE000E100)
 #define NVIC_ICER (*(volatile uint32_t *)0xE000E180)
+#define NVIC_IPR3 (*(volatile uint32_t *)0xE000E460)
+#define NVIC_IPR5 (*(volatile uint32_t *)0xE000E4a0)
 
 #define MAKE_DEFAULT_HANDLER(x) void __attribute__((weak)) x(void) {disable_irq() while(1);}
 
@@ -108,6 +110,10 @@ void *vector_table[] __attribute__((aligned(256))) =
 void irq_init(void)
 {
    VTOR = (uint32_t) vector_table;
+
+   //priorités
+   NVIC_IPR3 = 0x00000000; //UART0
+   NVIC_IPR5 = 0x00ff0000; //PIT
 }
 
 void irq_enable(int irq_number)
