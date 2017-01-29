@@ -80,7 +80,9 @@ void uart_gets(char *s, int size)
    }
 }
 
+extern int sum;
+
 void UART0_IRQHandler()
 {
-   uart_putchar(uart_getchar());
+   sum = sum + uart_getchar();
 }

@@ -1,6 +1,7 @@
 # SE203 Dépôt Git
 
 Bienvenue sur le gitLab de Erwan CHERIAUX !
+Ajouter une cles SSH : profile settings / SSH Keys
 
 # Makefile (pour le 25/11/2016)
 

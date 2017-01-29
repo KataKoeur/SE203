@@ -9,6 +9,8 @@
 
 void clocks_init();
 
+int sum = 0;
+
 int main (void)
 {
    //initialisation

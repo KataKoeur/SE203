@@ -113,8 +113,6 @@ void irq_init(void)
 
    //interruptions
    irq_enable(12); //UART0
-   irq_enable(22); //PIT
-   irq_enable(31); //buttons (port C)
 }
 
 void irq_enable(int irq_number)
