@@ -35,7 +35,6 @@ void uart_init()
 
    //activation interruption UART0
    UART0_C2 = 0x20;
-   irq_enable(12);
 
    //broche RX et TX du portA en mode UART0
    SIM_SCGC5 |= 0x00000200;

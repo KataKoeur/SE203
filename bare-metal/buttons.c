@@ -16,9 +16,6 @@ void button_init()
 
    //config entrée
    GPIOC_PDDR &= ~0x00000008;
-
-   //activation interruption port C
-   irq_enable(31);
 }
 
 void PORTCD_IRQHandler()

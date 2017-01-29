@@ -110,6 +110,11 @@ void *vector_table[] __attribute__((aligned(256))) =
 void irq_init(void)
 {
    VTOR = (uint32_t) vector_table;
+
+   //interruptions
+   irq_enable(12); //UART0
+   irq_enable(22); //PIT
+   irq_enable(31); //buttons (port C)
 }
 
 void irq_enable(int irq_number)

@@ -14,14 +14,13 @@ void pit_init()
    SIM_SCGC6 |= 1<<23;
    PIT_MCR = 0x00000000;
 
-   //fréquence des interruptions (70Hz)
-   PIT_LDVAL0 = 0x00053b49;
+   //fréquence des interruptions (1Hz)
+   PIT_LDVAL0 = 0x016e3600;
 
    //abaissement du flag
    PIT_TFLG0 = 0x00000001;
 
    //activation timer et interruption
-   irq_enable(22);
    PIT_TCTRL0 = 0x00000003;
 }
 
