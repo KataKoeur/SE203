@@ -5,8 +5,14 @@
 #define VTOR      (*(volatile uint32_t *)0xE000ED08)
 #define NVIC_ISER (*(volatile uint32_t *)0xE000E100)
 #define NVIC_ICER (*(volatile uint32_t *)0xE000E180)
-#define NVIC_IPR3 (*(volatile uint32_t *)0xE000E460)
-#define NVIC_IPR5 (*(volatile uint32_t *)0xE000E4a0)
+#define NVIC_IPR0 (*(volatile uint32_t *)0xE000E400)
+#define NVIC_IPR1 (*(volatile uint32_t *)0xE000E404)
+#define NVIC_IPR2 (*(volatile uint32_t *)0xE000E408)
+#define NVIC_IPR3 (*(volatile uint32_t *)0xE000E40c)
+#define NVIC_IPR4 (*(volatile uint32_t *)0xE000E410)
+#define NVIC_IPR5 (*(volatile uint32_t *)0xE000E414)
+#define NVIC_IPR6 (*(volatile uint32_t *)0xE000E418)
+#define NVIC_IPR7 (*(volatile uint32_t *)0xE000E41c)
 
 #define MAKE_DEFAULT_HANDLER(x) void __attribute__((weak)) x(void) {disable_irq() while(1);}
 
@@ -109,6 +115,7 @@ void *vector_table[] __attribute__((aligned(256))) =
 
 void irq_init(void)
 {
+   enable_irq()
    VTOR = (uint32_t) vector_table;
 
    //priorités

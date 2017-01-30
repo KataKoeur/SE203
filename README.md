@@ -139,3 +139,6 @@ Je trouve que la fréquence de 70Hz n'est pas suffisante pour afficher correctem
 Cela n'est pourtant pas de sens puisque 24 images par seconde devraient amplement suffire. Avec 70 images par seconde, on est bien au-dessus de la limite.
 J'ai constaté avec cutecom que certains octets ne sont pas lus par l'Uart, ce qui décale tout !
 Il faudrait prioriser les interruptions de l'Uart sur ceux du PIT.
+
+Le problème venait bien des priorités non respecté. Cela fonctionne beaucoup mieux.
+Reste encore le problème de l'affichage car la dernière ligne affichée à une couleur bien plus intense que les autres car elle est allumée plus longtemps.
