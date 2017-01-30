@@ -2,24 +2,28 @@
 
 #include "clocks.h"
 
-#define MCG_C1    (*(volatile uint8_t *)0x40064000)
-#define MCG_C2    (*(volatile uint8_t *)0x40064001)
-#define MCG_C3    (*(volatile uint8_t *)0x40064002)
-#define MCG_C4    (*(volatile uint8_t *)0x40064003)
-#define MCG_C5    (*(volatile uint8_t *)0x40064004)
-#define MCG_C6    (*(volatile uint8_t *)0x40064005)
-#define MCG_S     (*(volatile uint8_t *)0x40064006)
-#define MCG_SC    (*(volatile uint8_t *)0x40064008)
-#define MCG_ATCVH (*(volatile uint8_t *)0x4006400a)
-#define MCG_ATCVL (*(volatile uint8_t *)0x4006400b)
-#define MCG_C7    (*(volatile uint8_t *)0x4006400c)
-#define MCG_C8    (*(volatile uint8_t *)0x4006400d)
-#define MCG_C9    (*(volatile uint8_t *)0x4006400e)
-#define MCG_C10   (*(volatile uint8_t *)0x4006400f)
+#define MCG_C1    (*(volatile uint8_t  *)0x40064000)
+#define MCG_C2    (*(volatile uint8_t  *)0x40064001)
+#define MCG_C3    (*(volatile uint8_t  *)0x40064002)
+#define MCG_C4    (*(volatile uint8_t  *)0x40064003)
+#define MCG_C5    (*(volatile uint8_t  *)0x40064004)
+#define MCG_C6    (*(volatile uint8_t  *)0x40064005)
+#define MCG_S     (*(volatile uint8_t  *)0x40064006)
+#define MCG_SC    (*(volatile uint8_t  *)0x40064008)
+#define MCG_ATCVH (*(volatile uint8_t  *)0x4006400a)
+#define MCG_ATCVL (*(volatile uint8_t  *)0x4006400b)
+#define MCG_C7    (*(volatile uint8_t  *)0x4006400c)
+#define MCG_C8    (*(volatile uint8_t  *)0x4006400d)
+#define MCG_C9    (*(volatile uint8_t  *)0x4006400e)
+#define MCG_C10   (*(volatile uint8_t  *)0x4006400f)
+#define SIM_COPC  (*(volatile uint32_t *)0x40048100)
 
 void clocks_init()
 {
    int BLPE_mode = 0;
+
+   //désactivation du watchdog
+   SIM_COPC = 0x00;
 
    //FEI vers FBE
 

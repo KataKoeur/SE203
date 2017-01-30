@@ -150,3 +150,5 @@ Pour résoudre le problème d'affichage, j'ai décidé de multiplier par 8 le no
 Le programme se lance sans problème particulier, je peux même voir ma LED rouge clignoter lorsque j'appuie sur le boutton adéquat.
 Cependant, un SIGTRAP apparaît une seconde après avoir lancé le programme.
 Il est probable qu'un watchdog déclenche cette interruption. C'est pourquoi je dois la désactiver dans le but d'observer ma LED clignoter à la fréquence d'un Herz afin de valider une bonne initialisation des horloges.
+
+Après désactivation du watchdog, je remarque que ma LED clignote bien à 1Hz.
