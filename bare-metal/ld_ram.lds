@@ -1,13 +1,18 @@
 MEMORY
 {
-   flash_config (rx)  : ORIGIN = 0x00000400, LENGTH = 32
-   flash        (rx)  : ORIGIN = 0x00020000, LENGTH = 254K
+   vector_table (rx)  : ORIGIN = 0x00000000, LENGTH = 192
+   flash_config (rx)  : ORIGIN = 0x00000400, LENGTH = 16
+   flash        (rx)  : ORIGIN = 0x00001000, LENGTH = 254K
    RAML         (!rx) : ORIGIN = 0x1fffe000, LENGTH = 8K
    RAMH         (!rx) : ORIGIN = 0x20000000, LENGTH = 24K
 }
 
 SECTIONS
 {
+   .vector_table : {
+                      *(.vector_table)
+                   } > vector_table
+
    .flash_config : {
                       *(.flash_config)
                    } > flash_config
@@ -15,17 +20,17 @@ SECTIONS
    .text         : { 
                       *(.text)
                       _end_of_text = .;
-                   } > RAMH
+                   } > flash
                  
    .rodata       : { 
                       *(.rodata)
-                   } > RAMH
+                   } > flash
                  
    .data         : { 
                       _start_of_data = .;
                       *(.data)
                       _end_of_data = .;
-                   } > RAMH
+                   } > flash
                  
    .bss          : {
                       _start_of_bss = .;
