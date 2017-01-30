@@ -14,8 +14,8 @@ void pit_init()
    SIM_SCGC6 |= 1<<23;
    PIT_MCR = 0x00000000;
 
-   //fréquence des interruptions (70Hz)
-   PIT_LDVAL0 = 0x00053b49;
+   //fréquence des interruptions (70Hz * 8)
+   PIT_LDVAL0 = 0x0000a769;
 
    //abaissement du flag
    PIT_TFLG0 = 0x00000001;
@@ -27,7 +27,7 @@ void pit_init()
 
 void PIT_IRQHandler()
 {
-   display_screen();
+   display_screen_row_by_row();
    //abaissement du flag
    PIT_TFLG0 = 0x00000001;
 }

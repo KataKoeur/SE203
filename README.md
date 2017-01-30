@@ -133,7 +133,7 @@ Le PIT fonctionne correctement, on obtient différentes fréquences d'intérrupt
 
 freq = 1Hz,   reg = 0x016e3600
 freq = 70Hz,  reg = 0x00053b49
-freq = 500Hz, reg = 0x0000bb80
+freq = 560Hz, reg = 0x0000a769 (soit 70Hz * 8)
 
 Je trouve que la fréquence de 70Hz n'est pas suffisante pour afficher correctement les animations sur la matrice de LED.
 Cela n'est pourtant pas de sens puisque 24 images par seconde devraient amplement suffire. Avec 70 images par seconde, on est bien au-dessus de la limite.
@@ -142,3 +142,5 @@ Il faudrait prioriser les interruptions de l'Uart sur ceux du PIT.
 
 Le problème venait bien des priorités non respecté. Cela fonctionne beaucoup mieux.
 Reste encore le problème de l'affichage car la dernière ligne affichée à une couleur bien plus intense que les autres car elle est allumée plus longtemps.
+
+Pour résoudre le problème d'affichage, j'ai décidé de multiplier par 8 le nombre d'interruption du PIT et de n'afficher qu'une seule ligne par interruption. Cela permet d'avoir une bonne répartition du temps d'affichage de chaque ligne.

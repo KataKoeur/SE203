@@ -255,3 +255,13 @@ void display_screen()
       mat_set_row(row, screen+(row*8));
    }
 }
+
+void display_screen_row_by_row()
+{
+   static int row = 0;
+
+   mat_set_row(row, screen+(row*8));
+
+   if(row == 7)   row = 0;
+   else           row++;
+}

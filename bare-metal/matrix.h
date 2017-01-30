@@ -25,6 +25,7 @@ void mat_set_row(int row, const rgb_color *val);
 void test_pixels();
 void test_static_image();
 void display_screen();
+void display_screen_row_by_row();
 
 extern rgb_color screen[64];
 
