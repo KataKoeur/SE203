@@ -144,3 +144,9 @@ Le problème venait bien des priorités non respecté. Cela fonctionne beaucoup 
 Reste encore le problème de l'affichage car la dernière ligne affichée à une couleur bien plus intense que les autres car elle est allumée plus longtemps.
 
 Pour résoudre le problème d'affichage, j'ai décidé de multiplier par 8 le nombre d'interruption du PIT et de n'afficher qu'une seule ligne par interruption. Cela permet d'avoir une bonne répartition du temps d'affichage de chaque ligne.
+
+# Horloges
+
+Le programme se lance sans problème particulier, je peux même voir ma LED rouge clignoter lorsque j'appuie sur le boutton adéquat.
+Cependant, un SIGTRAP apparaît une seconde après avoir lancé le programme.
+Il est probable qu'un watchdog déclenche cette interruption. C'est pourquoi je dois la désactiver dans le but d'observer ma LED clignoter à la fréquence d'un Herz afin de valider une bonne initialisation des horloges.
