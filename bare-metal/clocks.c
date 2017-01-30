@@ -40,7 +40,7 @@ void clocks_init()
    while(MCG_S & (1<<4));
 
    //Loop until S[CLKST] is 2'b10, indicating that the external reference clock is selected to feed MCGOUTCLK.
-   while((MCG_S & 0x0c) == 0x08);
+   while((MCG_S & 0x0c) != 0x08);
 
    //C5[PRDIV] set to 5'b00011, or divide-by-4 resulting in a pll reference frequency of 8MHz/4 = 2 MHz.
    MCG_C5 = 0x03;
@@ -71,5 +71,5 @@ void clocks_init()
    MCG_C1 &= ~0xc0;
 
    //Loop until S[CLKST] are 2'b11, indicating that the PLL output is selected to feed MCGOUTCLK in the current clock mode.
-   while((MCG_S & 0x0c) == 0x0c);
+   while((MCG_S & 0x0c) != 0x0c);
 }
