@@ -2,21 +2,22 @@
 
 #include "clocks.h"
 
-#define MCG_C1    (*(volatile uint8_t  *)0x40064000)
-#define MCG_C2    (*(volatile uint8_t  *)0x40064001)
-#define MCG_C3    (*(volatile uint8_t  *)0x40064002)
-#define MCG_C4    (*(volatile uint8_t  *)0x40064003)
-#define MCG_C5    (*(volatile uint8_t  *)0x40064004)
-#define MCG_C6    (*(volatile uint8_t  *)0x40064005)
-#define MCG_S     (*(volatile uint8_t  *)0x40064006)
-#define MCG_SC    (*(volatile uint8_t  *)0x40064008)
-#define MCG_ATCVH (*(volatile uint8_t  *)0x4006400a)
-#define MCG_ATCVL (*(volatile uint8_t  *)0x4006400b)
-#define MCG_C7    (*(volatile uint8_t  *)0x4006400c)
-#define MCG_C8    (*(volatile uint8_t  *)0x4006400d)
-#define MCG_C9    (*(volatile uint8_t  *)0x4006400e)
-#define MCG_C10   (*(volatile uint8_t  *)0x4006400f)
-#define SIM_COPC  (*(volatile uint32_t *)0x40048100)
+#define MCG_C1      (*(volatile uint8_t  *)0x40064000)
+#define MCG_C2      (*(volatile uint8_t  *)0x40064001)
+#define MCG_C3      (*(volatile uint8_t  *)0x40064002)
+#define MCG_C4      (*(volatile uint8_t  *)0x40064003)
+#define MCG_C5      (*(volatile uint8_t  *)0x40064004)
+#define MCG_C6      (*(volatile uint8_t  *)0x40064005)
+#define MCG_S       (*(volatile uint8_t  *)0x40064006)
+#define MCG_SC      (*(volatile uint8_t  *)0x40064008)
+#define MCG_ATCVH   (*(volatile uint8_t  *)0x4006400a)
+#define MCG_ATCVL   (*(volatile uint8_t  *)0x4006400b)
+#define MCG_C7      (*(volatile uint8_t  *)0x4006400c)
+#define MCG_C8      (*(volatile uint8_t  *)0x4006400d)
+#define MCG_C9      (*(volatile uint8_t  *)0x4006400e)
+#define MCG_C10     (*(volatile uint8_t  *)0x4006400f)
+#define SIM_COPC    (*(volatile uint32_t *)0x40048100)
+#define SIM_CLKDIV1 (*(volatile uint32_t *)0x40048044)
 
 void clocks_init()
 {
@@ -76,4 +77,7 @@ void clocks_init()
 
    //Loop until S[CLKST] are 2'b11, indicating that the PLL output is selected to feed MCGOUTCLK in the current clock mode.
    while((MCG_S & 0x0c) != 0x0c);
+
+   //config horloge périphériques
+   SIM_CLKDIV1 = 1<<16;
 }
