@@ -12,3 +12,11 @@ void init_bss()
       *dst = 0;
    }
 }
+
+void init_memory()
+{
+   extern char _start_of_flash_vectors;
+   extern void *vector_table[];
+
+   _start_of_flash_vectors = (int) vector_table;
+}
