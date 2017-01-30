@@ -6,8 +6,7 @@
 #include "irq.h"
 #include "buttons.h"
 #include "pit.h"
-
-void clocks_init();
+#include "clocks.h"
 
 int main (void)
 {
