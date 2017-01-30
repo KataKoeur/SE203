@@ -1,5 +1,6 @@
 .thumb
 .global _start
+.type _start, %function
 _start:
    ldr r0, =_stack   @gestion pointeur de pile
    mov sp, r0

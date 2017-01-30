@@ -48,7 +48,7 @@ MAKE_DEFAULT_HANDLER (PORTA_IRQHandler)
 MAKE_DEFAULT_HANDLER (PORTCD_IRQHandler)
 
 extern char _stack;
-extern char _start();
+void _start();
 
 void *vector_table[] __attribute__((aligned(256))) = 
 {
@@ -109,6 +109,7 @@ void *vector_table[] __attribute__((aligned(256))) =
 
 void irq_init(void)
 {
+   enable_irq()
    VTOR = (uint32_t) vector_table;
 
    //interruptions
