@@ -152,3 +152,11 @@ Cependant, un SIGTRAP apparaît une seconde après avoir lancé le programme.
 Il est probable qu'un watchdog déclenche cette interruption. C'est pourquoi je dois la désactiver dans le but d'observer ma LED clignoter à la fréquence d'un Herz afin de valider une bonne initialisation des horloges.
 
 Après désactivation du watchdog, je remarque que ma LED clignote bien à 1Hz.
+
+# Flash
+
+Il faut mettre dans la section .flash_program le .texte les .rodata et les .data tandis que la .bss reste dans la RAM.
+De plus il faut mettre la table des vecteurs dans une section spécifique qui se trouve à l'adresse 0.
+On peut, après compilation, vérifier que l'on n'écrit pas dans des zones sensible de la flash avec la commande "arm-none-eabi-objdump -x main.elf | less".
+
+Une fois le programme logé en flash, je peux débrancher et rebrancher la carte et voir le programme se lancer automatiquement

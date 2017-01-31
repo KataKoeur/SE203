@@ -56,7 +56,7 @@ MAKE_DEFAULT_HANDLER (PORTCD_IRQHandler)
 extern char _stack;
 void _start();
 
-void *vector_table[] __attribute__((aligned(256))) = 
+void *vector_table[] __attribute__((section(".flash_vectors"))) __attribute__((aligned(256))) = 
 {
    // Stack and Reset Handler
    &_stack,            /* Top of stack */
