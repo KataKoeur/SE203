@@ -22,6 +22,7 @@ SECTIONS
                     } > flash_program
                   
    .text          : { 
+                       _start_of_text = .;
                        *(.text)
                        _end_of_text = .;
                     } > flash_program

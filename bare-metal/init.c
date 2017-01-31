@@ -12,3 +12,16 @@ void init_bss()
       *dst = 0;
    }
 }
+
+void init_memory()
+{
+   extern char _end_of_text;
+   extern char _start_of_data;
+   extern char _end_of_data;
+
+   char *src = &_end_of_text;
+   char *dst = &_start_of_data;
+   
+   while (dst < &_end_of_data) 
+      *dst++ = *src++;
+}
