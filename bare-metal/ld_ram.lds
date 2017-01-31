@@ -10,7 +10,9 @@ MEMORY
 SECTIONS
 {
    .flash_vectors : {
+                       _start_of_flash_vectors = .;
                        *(.flash_vectors)
+                       _end_of_flash_vectors = .;
                     } > flash_vectors
                   
    .flash_config  : {
