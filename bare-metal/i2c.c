@@ -8,6 +8,18 @@
 #define PORTD_PCR1  (*(volatile uint32_t *)0x4004c004)
 #define SIM_SCGC4   (*(volatile uint32_t *)0x40048034)
 #define SIM_SCGC5   (*(volatile uint32_t *)0x40048038)
+#define I2C0_A1     (*(volatile uint32_t *)0x40066000)
+#define I2C0_F      (*(volatile uint32_t *)0x40066001)
+#define I2C0_C1     (*(volatile uint32_t *)0x40066002)
+#define I2C0_S      (*(volatile uint32_t *)0x40066003)
+#define I2C0_D      (*(volatile uint32_t *)0x40066004)
+#define I2C0_C2     (*(volatile uint32_t *)0x40066005)
+#define I2C0_FLT    (*(volatile uint32_t *)0x40066006)
+#define I2C0_RA     (*(volatile uint32_t *)0x40066007)
+#define I2C0_SMR    (*(volatile uint32_t *)0x40066008)
+#define I2C0_A2     (*(volatile uint32_t *)0x40066009)
+#define I2C0_SLTH   (*(volatile uint32_t *)0x4006600A)
+#define I2C0_SLTL   (*(volatile uint32_t *)0x4006600B)
 
 void i2c_init()
 {
