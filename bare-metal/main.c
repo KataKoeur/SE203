@@ -7,6 +7,7 @@
 #include "buttons.h"
 #include "pit.h"
 #include "clocks.h"
+#include "i2c.h"
 
 int main (void)
 {
@@ -18,6 +19,7 @@ int main (void)
    matrix_init();
    button_init();
    pit_init();
+   i2c_init();
 
    //code
    while(1);

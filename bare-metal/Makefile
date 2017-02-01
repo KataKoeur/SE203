@@ -12,7 +12,7 @@ ASFLAGS = -g -mcpu=cortex-m0plus
 LDFLAGS = -T ld_ram.lds -nostdlib
 
 EXE = main.elf
-OBJS = main.o init.o led.o uart.o matrix.o irq.o buttons.o pit.o clocks.o image.o flash.o crt0.o
+OBJS = main.o init.o led.o uart.o matrix.o irq.o buttons.o pit.o clocks.o i2c.o image.o flash.o crt0.o
 
 DEPS = $(subst .o,.d,$(OBJS))
 
