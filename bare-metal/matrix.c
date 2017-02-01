@@ -48,9 +48,14 @@ rgb_color screen[64];
 extern char _binary_image_raw_start; 
 extern char _binary_image_raw_end; 
 
-static void init_bank0();
-static void pulse_SCK();
-static void pulse_LAT();
+static inline void init_bank0();
+static inline void pulse_SCK();
+static inline void pulse_LAT();
+static inline void deactivate_rows();
+static inline void activate_row(int row);
+
+static void send_byte(uint8_t val, int bank);
+static void mat_set_row(int row, const rgb_color *val);
 
 void matrix_init()
 {
@@ -94,7 +99,7 @@ void matrix_init()
 }
 
 //pulsation positive
-static void pulse_SCK()
+static inline void pulse_SCK()
 {
    SCK(0)
    asm volatile("nop"); // >25ns
@@ -106,7 +111,7 @@ static void pulse_SCK()
 }
 
 //pulsation négative
-static void pulse_LAT()
+static inline void pulse_LAT()
 {
    LAT(1)
    asm volatile("nop"); // >25ns
@@ -116,7 +121,7 @@ static void pulse_LAT()
    LAT(1)
 }
 
-void deactivate_rows()
+static inline void deactivate_rows()
 {
    ROW0(0)
    ROW1(0)
@@ -128,7 +133,7 @@ void deactivate_rows()
    ROW7(0)
 }
 
-void activate_row(int row)
+static inline void activate_row(int row)
 {
    if(row == 0)      ROW0(1)
    else if(row == 1) ROW1(1)
@@ -140,7 +145,7 @@ void activate_row(int row)
    else if(row == 7) ROW7(1)
 }
 
-void send_byte(uint8_t val, int bank)
+static void send_byte(uint8_t val, int bank)
 {
    //selection registre à décalage
    SB(bank)
@@ -155,7 +160,7 @@ void send_byte(uint8_t val, int bank)
    }
 }
 
-void mat_set_row(int row, const rgb_color *val)
+static void mat_set_row(int row, const rgb_color *val)
 {
    //activation LED par LED
    for(int i=0; i<8; i++)
@@ -169,7 +174,7 @@ void mat_set_row(int row, const rgb_color *val)
    deactivate_rows();
 
    //attente pour eviter le clignotement des LEDs
-   for(int i=0; i<5000; i++) asm volatile("nop");
+   for(int i=0; i<1000; i++) asm volatile("nop");
 
    pulse_LAT();
 
@@ -177,7 +182,7 @@ void mat_set_row(int row, const rgb_color *val)
    activate_row(row);
 }
 
-static void init_bank0()
+static inline void init_bank0()
 {
    for(int i=0; i<8; i++)
    {
