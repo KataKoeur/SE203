@@ -10,34 +10,30 @@ MEMORY
 SECTIONS
 {
    .flash_vectors : {
-                       _start_of_flash_vectors = .;
+                       _start_of_flash_vectors_VMA = .;
                        *(.flash_vectors)
-                       _end_of_flash_vectors = .;
-                    } > flash_vectors
+                       _end_of_flash_vectors_VMA = .;
+                    } > RAMH   AT>flash_vectors
                   
    .flash_config  : {
                        *(.flash_config)
                     } > flash_config
-                  
-   .flash_program : {
-                       *(.flash_program)
-                    } > flash_program
-                  
+
    .text          : { 
-                       _start_of_text = .;
+                       _start_of_text_VMA = .;
                        *(.text)
-                       _end_of_text = .;
-                    } > flash_program
-                  
+                       _end_of_text_VMA = .;
+                    } > RAMH   AT>flash_program
+
    .rodata        : { 
                        *(.rodata)
                     } > flash_program
-                  
+
    .data          : { 
-                       _start_of_data = .;
+                       _start_of_data_VMA = .;
                        *(.data)
-                       _end_of_data = .;
-                    } > flash_program
+                       _end_of_data_VMA = .;
+                    } > RAMH   AT>flash_program
                   
    .bss           : {
                        _start_of_bss = .;
@@ -49,3 +45,10 @@ SECTIONS
 ENTRY(_start)
 
 _stack = ORIGIN(RAMH);
+
+_start_of_flash_vectors_LMA = LOADADDR(.flash_vectors);
+_end_of_flash_vectors_LMA   = LOADADDR(.flash_vectors) + SIZEOF(.flash_vectors);
+_start_of_text_LMA          = LOADADDR(.text);
+_end_of_text_LMA            = LOADADDR(.text) + SIZEOF(.text);
+_start_of_data_LMA          = LOADADDR(.data);
+_end_of_data_LMA            = LOADADDR(.data) + SIZEOF(.data);

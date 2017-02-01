@@ -131,9 +131,9 @@ J'ai toutefois remarqué que certaine LED change d'état après un certain temps
 
 Le PIT fonctionne correctement, on obtient différentes fréquences d'intérruptions avec les valeurs suivantes dans le registre PIT_LDVAL0:
 
-freq = 1Hz,   reg = 0x016e3600
-freq = 70Hz,  reg = 0x00053b49
-freq = 560Hz, reg = 0x0000a769 (soit 70Hz * 8)
+- freq = 1Hz,   reg = 0x016e3600
+- freq = 70Hz,  reg = 0x00053b49
+- freq = 560Hz, reg = 0x0000a769 (soit 70Hz * 8)
 
 Je trouve que la fréquence de 70Hz n'est pas suffisante pour afficher correctement les animations sur la matrice de LED.
 Cela n'est pourtant pas de sens puisque 24 images par seconde devraient amplement suffire. Avec 70 images par seconde, on est bien au-dessus de la limite.
@@ -160,3 +160,8 @@ De plus il faut mettre la table des vecteurs dans une section spécifique qui se
 On peut, après compilation, vérifier que l'on n'écrit pas dans des zones sensible de la flash avec la commande "arm-none-eabi-objdump -x main.elf | less".
 
 Une fois le programme logé en flash, je peux débrancher et rebrancher la carte et voir le programme se lancer automatiquement
+
+- VMA : Zone d'éxecution (RAM)
+- LMA : Zone de stockage (Flash)
+
+Pour récupérer l'adresse d'une section en LMA, il faut utiliser LOADADDR(.section).
