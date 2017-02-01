@@ -19,6 +19,11 @@ SECTIONS
                        *(.flash_config)
                     } > flash_config
 
+   .init          : { 
+                       crt0.o*(.text)
+                       init.o*(.text)
+                    } > flash_program
+
    .text          : { 
                        _start_of_text_VMA = .;
                        *(.text)

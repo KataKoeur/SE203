@@ -165,3 +165,13 @@ Une fois le programme logé en flash, je peux débrancher et rebrancher la carte
 - LMA : Zone de stockage (Flash)
 
 Pour récupérer l'adresse d'une section en LMA, il faut utiliser LOADADDR(.section).
+
+Il faut que le code init.c soit en flash car ce même fichier en RAM n'existe pas encore. Cela crée une HARDFAULTEXCEPTION !
+Deux solutions:
+
+- faire la recopie en assembleur dans le crt0 s
+- mettre le fichier init.c dans une section en flash qui ne sera pas recopié
+
+J'ai choisi de créer une section .init en flash qui contient le crt0.s et le init.c.
+Je constate que le programme commence à s'exécuter dans le flash, recopie le code en RAM puis continue son exécution en RAM.
+Le programme FONCTIONNE!!
