@@ -119,4 +119,6 @@ void UART0_IRQHandler()
       if(ptr_color  == 3) {ptr_color  = 0; ptr_screen++;}
       if(ptr_screen == 64) fault = 1;
    }
+
+   PORTA_PCR1 |= 1<<24; //flag
 }
